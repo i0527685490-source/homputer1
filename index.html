@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>הומפיוטר</title>
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #ffffff;
+}
+header {
+    background: #f8f9fa;
+    color: #2c3e50;
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    position: relative;
+    height: 60px; /* שומרים על גובה הפס העליון */
+}
+header h1 {
+    font-size: 20px;
+    margin: 0;
+}
+nav {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    height: 100%;
+}
+nav a {
+    text-decoration: none;
+    color: #2c3e50;
+    font-weight: bold;
+    font-size: 14px;
+    transition: color 0.3s;
+    cursor: pointer;
+}
+nav a:hover {
+    color: #007bff;
+}
+section {
+    display: none;
+    padding: 20px;
+}
+section.active {
+    display: block;
+}
+main {
+    display: flex;
+    flex-direction: row;
+    background: #fdfdfd;
+    min-height: 600px;
+}
+.right {
+    width: 30%;
+    border-left: 1px solid #e0e0e0;
+}
+.left {
+    width: 70%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+iframe {
+    border: none;
+    width: 100%;
+    height: 600px;
+}
+.embed-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    width: 80%;
+    max-width: 800px;
+    height: 450px;
+    background: #f0f0f0;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    border-radius: 8px;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.6s ease;
+    z-index: 1000;
+}
+.embed-popup.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+.embed-popup iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+.embed-popup-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    background: #888;
+    color: white;
+    font-weight: bold;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 28px;
+    cursor: pointer;
+    z-index: 1001;
+}
+/* לוגו גדול מבלי להגדיל את header */
+header .logo {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 140px; /* גובה הלוגו */
+    width: auto;
+    cursor: pointer;
+    object-fit: contain;
+    z-index: 10;
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1></h1>
+    <nav>
+        <a onclick="showSection('home')">דף הבית</a>
+        <a onclick="showSection('computers')">מחשבים</a>
+        <a onclick="showSection('about')">מבצעים</a>
+    </nav>
+    <a href="https://www.gmail.com" target="_blank">
+        <img class="logo" src="https://github.com/i0527685490-source/homputer/blob/main/%D7%94%D7%9C%D7%95%D7%92%D7%95_%D7%A9%D7%9C_%D7%94%D7%95%D7%9E%D7%A4%D7%99%D7%95%D7%98%D7%A8-removebg-preview.png?raw=true" alt="לוגו החנות">
+    </a>
+</header>
+
+<section id="home" class="active">
+<main>
+    <div class="right">
+        <iframe src="https://www.matara.pro/nedarimplus/online/?mosad=7011337"></iframe>
+    </div>
+    <div class="left">
+        <div class="embed-wrapper">
+            <iframe loading="lazy" src="https://www.canva.com/design/DAGxAwi0UZA/4w5ObQ-raviWAaevI84PMA/view?embed" allowfullscreen allow="fullscreen"></iframe>
+        </div>
+    </div>
+</main>
+</section>
+
+<section id="computers">
+<div style="position: relative; width: 100%; height: 0; padding-top: 56.25%; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden; border-radius: 8px; will-change: transform;">
+    <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0;" src="https://www.canva.com/design/DAGxdnUllVM/hoEDM1niQqxN9gPCWM-1_A/view?embed" allowfullscreen allow="fullscreen"></iframe>
+</div>
+</section>
+
+<section id="about">
+<h2>מבצעים</h2>
+<div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%; padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden; border-radius: 8px; will-change: transform;">
+  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+    src="https://www.canva.com/design/DAGxk9VGHJk/PTDmokGnIRSd1dH42Hm23Q/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+  </iframe>
+</div>
+<a href="https://www.canva.com/design/DAGxk9VGHJk/PTDmokGnIRSd1dH42Hm23Q/view?utm_content=DAGxk9VGHJk&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">מה שמופיע במבצעים</a> על ידי הומפיוטר הי קום HOMPUTER
+</section>
+
+<!-- Popup -->
+<div class="embed-popup" id="designPopup">
+    <div class="embed-popup-close" onclick="closePopup()">×</div>
+    <iframe src="https://www.canva.com/design/DAGxkjmFEK0/xKdCrbvM08DbymdDfDFlEg/view?embed" allowfullscreen allow="fullscreen"></iframe>
+</div>
+
+<script>
+function showSection(id) {
+    document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+}
+
+function closePopup() {
+    document.getElementById('designPopup').classList.remove('show');
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    const popup = document.getElementById('designPopup');
+    const isFirstVisit = !localStorage.getItem('visited');
+
+    if (isFirstVisit) {
+        // אם זה הביקור הראשון - מיידי
+        popup.classList.add('show');
+        localStorage.setItem('visited', 'true');
+    } else {
+        // ביקורים חוזרים - אחרי 40 שניות
+        setTimeout(() => {
+            popup.classList.add('show');
+        }, 40000); // 40000 מילישניות = 40 שניות
+    }
+});
+</script>
+
+</body>
+</html>
