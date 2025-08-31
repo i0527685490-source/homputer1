@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta name="description" content="הומפיוטר - חנות מחשבים ומבצעים אונליין. החנות ממוקמת בירושלים, והיא חנות מאד מצליחה. מוכרים מחשבים וציוד היקפי מכל החברות המובילות.">
-
 <meta charset="UTF-8">
+<meta name="description" content="הומפיוטר - חנות מחשבים ומבצעים אונליין. החנות ממוקמת בירושלים, והיא חנות מאד מצליחה. מוכרים מחשבים וציוד היקפי מכל החברות המובילות.">
 <title>הומפיוטר</title>
 
-<!-- לוגו שיופיע בכרטיסייה -->
+<!-- לוגו בכרטיסייה -->
 <link rel="icon" type="image/png" href="https://github.com/i0527685490-source/homputer1/blob/main/%D7%94%D7%9C%D7%95%D7%92%D7%95_%D7%A9%D7%9C_%D7%94%D7%95%D7%9E%D7%A4%D7%99%D7%95%D7%98%D7%A8-removebg-preview.png?raw=true">
 
 <style>
@@ -15,17 +14,20 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #ffffff;
 }
+
+/* פס עליון מודרני */
 header {
-    background: #f8f9fa;
+    background: linear-gradient(90deg, #ffffff 0%, #f0f4ff 100%);
     color: #2c3e50;
-    padding: 15px 20px;
+    padding: 10px 30px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 2px solid #e0e6f0;
     position: relative;
-    height: 60px;
+    height: 70px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 header h1 {
     font-size: 20px;
@@ -33,28 +35,36 @@ header h1 {
 }
 nav {
     display: flex;
-    gap: 20px;
+    gap: 25px;
     align-items: center;
     height: 100%;
 }
 nav a {
     text-decoration: none;
     color: #2c3e50;
-    font-weight: bold;
-    font-size: 14px;
+    font-weight: 600;
+    font-size: 15px;
     transition: color 0.3s;
     cursor: pointer;
 }
 nav a:hover {
-    color: #007bff;
+    color: #0056b3;
 }
-section {
-    display: none;
-    padding: 20px;
+header .logo {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 100px;
+    width: auto;
+    cursor: pointer;
+    object-fit: contain;
+    z-index: 10;
 }
-section.active {
-    display: block;
-}
+
+/* תוכן */
+section { display: none; padding: 20px; }
+section.active { display: block; }
 main {
     display: flex;
     flex-direction: row;
@@ -62,19 +72,12 @@ main {
     min-height: 600px;
     gap: 20px;
 }
-.right, .left {
-    height: 580px;
-}
+.right, .left { height: 580px; }
 .right { width: 30%; }
 .left { width: 70%; padding: 0; box-sizing: border-box; }
 iframe { border: none; width: 100%; height: 100%; }
-.embed-popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.8); width: 80%; max-width: 800px; height: 450px; background: #f0f0f0; box-shadow: 0 2px 12px rgba(0,0,0,0.3); border-radius: 8px; overflow: hidden; opacity: 0; transition: all 0.6s ease; z-index: 1000; }
-.embed-popup.show { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-.embed-popup iframe { width: 100%; height: 100%; border: none; }
-.embed-popup-close { position: absolute; top: 8px; right: 8px; width: 28px; height: 28px; background: #888; color: white; font-weight: bold; border-radius: 50%; text-align: center; line-height: 28px; cursor: pointer; z-index: 1001; }
-header .logo { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); height: 140px; width: auto; cursor: pointer; object-fit: contain; z-index: 10; }
 
-/* מסגרת מסביב ל־iframe של דף הבית */
+/* מסגרת iframe */
 .home-frame {
     border-radius: 12px;
     width: 100%;
@@ -91,12 +94,79 @@ header .logo { position: absolute; right: 20px; top: 50%; transform: translateY(
 .grid-2x2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-auto-rows: 366px; /* גובה של כל עיצוב */
-    gap: 10px; /* רווח מינימלי בין העיצובים */
+    grid-auto-rows: 366px;
+    gap: 10px;
 }
 
-/* אנימציה */
-@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+/* כרטיסי מוצר */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+.product-card {
+    border: 1px solid #e0e6f0;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s;
+}
+.product-card:hover {
+    transform: translateY(-5px);
+}
+.product-card img {
+    width: 100%;
+    max-height: 150px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+.product-card h3 {
+    font-size: 16px;
+    margin: 8px 0;
+    color: #2c3e50;
+}
+.product-card p {
+    font-size: 14px;
+    color: #555;
+    margin: 4px 0;
+}
+.product-card .price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #0056b3;
+    margin: 10px 0;
+}
+.product-card a {
+    background: #0056b3;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+.product-card a:hover {
+    background: #003f80;
+}
+
+/* כותרת קטגוריה בתוך גריד המוצרים */
+.product-title {
+    grid-column: 1 / -1;
+    background: #f0f4ff;
+    color: #0056b3;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin: 10px 0;
+    text-align: right;
+    box-shadow: inset 0 -1px 0 #e0e6f0;
+}
 </style>
 </head>
 <body>
@@ -105,8 +175,9 @@ header .logo { position: absolute; right: 20px; top: 50%; transform: translateY(
     <h1></h1>
     <nav>
         <a onclick="showSection('home')">דף הבית</a>
-        <a onclick="showSection('computers')">מחשבים</a>
+        <a onclick="showSection('products')">מחשבים </a>
         <a onclick="showSection('about')">מבצעים</a>
+
     </nav>
     <a href="https://i0527685490-source.github.io/homputer1/" target="_blank">
         <img class="logo" src="https://github.com/i0527685490-source/homputer/blob/main/%D7%94%D7%9C%D7%95%D7%92%D7%95_%D7%A9%D7%9C_%D7%94%D7%95%D7%9E%D7%A4%D7%99%D7%95%D7%98%D7%A8-removebg-preview.png?raw=true" alt="לוגו החנות">
@@ -128,14 +199,7 @@ header .logo { position: absolute; right: 20px; top: 50%; transform: translateY(
 </main>
 </section>
 
-<section id="computers">
-<div class="grid-2x2">
-    <div class="home-frame"><iframe loading="lazy" src="https://www.canva.com/design/DAGxdnUllVM/hoEDM1niQqxN9gPCWM-1_A/view?embed" allowfullscreen></iframe></div>
-    <div class="home-frame"><iframe loading="lazy" src="https://www.canva.com/design/DAGxdnUllVM/hoEDM1niQqxN9gPCWM-1_A/view?embed" allowfullscreen></iframe></div>
-    <div class="home-frame"><iframe loading="lazy" src="https://www.canva.com/design/DAGxdnUllVM/hoEDM1niQqxN9gPCWM-1_A/view?embed" allowfullscreen></iframe></div>
-    <div class="home-frame"><iframe loading="lazy" src="https://www.canva.com/design/DAGxdnUllVM/hoEDM1niQqxN9gPCWM-1_A/view?embed" allowfullscreen></iframe></div>
-</div>
-</section>
+
 
 <section id="about">
 <div class="grid-2x2">
@@ -146,6 +210,62 @@ header .logo { position: absolute; right: 20px; top: 50%; transform: translateY(
 </div>
 </section>
 
+<!-- קטגוריית מחשבים ב -->
+<section id="products">
+    <div class="products-grid">
+
+        <!-- קטגוריית אסוס -->
+        <div class="product-title">אסוס</div>
+
+        <div class="product-card">
+            <img src="https://www.cdsoft.co.il/img/p/1/2/6/4/9/4/126494-thickbox_default.jpg" alt="מחשב נייד">
+            <h3>מחשב נייד אסוס V43</h3>
+            <p>מעבד I5, מסך 16.5 אינץ' פול HD</p>
+            <div class="price">₪2900</div>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdB4HM781LToESOwm_BLdmNOUnYHu62v7HGKl4Elzwx1vyfqw/viewform?usp=header" target="_blank">להזמנה כעת</a>
+        </div>
+
+        <!-- קטגוריית דל -->
+        <div class="product-title">דל</div>
+
+        <div class="product-card">
+            <img src="https://d3m9l0v76dty0.cloudfront.net/system/photos/15677913/large/cba2432f962cb75f4d928aa833d61c4a.png" alt="מחשב נייד">
+            <h3>מחשב נייד דל X12</h3>
+            <p>מעבד I7, 15.6 אינץ', SSD 512GB</p>
+            <div class="price">₪3400</div>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdZc1rd3xDy3uBAJxWJ6MZXaGD6nasjldmUlMrvN2tAK-LweA/viewform?usp=header" target="_blank">להזמנה כעת</a>
+        </div>
+
+        <div class="product-card">
+            <img src="https://www.cdsoft.co.il/img/p/1/1/7/7/0/9/117709-thickbox_default.jpg" alt="מחשב נייד">
+            <h3>מחשב נייד דל Y54</h3>
+            <p>מעבד R5, מסך 14 אינץ', SSD 256GB</p>
+            <div class="price">₪2600</div>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdZc0M6TU9bUeZqy1njTEIN5QmEGUBijlYs-fo56QTI-1_YgA/viewform?usp=header" target="_blank">להזמנה כעת</a>
+        </div>
+
+        <div class="product-card">
+            <img src="https://www.razcomputers.co.il/wp-content/uploads/2020/03/%D7%9E%D7%97%D7%A9%D7%91-%D7%A0%D7%99%D7%99%D7%93-ASUS-412F-%D7%90%D7%A1%D7%95%D7%A1-scaled.jpg" alt="מחשב נייד">
+            <h3>מחשב נייד דל Pro</h3>
+            <p>מעבד I3, מסך 15 אינץ', HDD 1TB</p>
+            <div class="price">₪2200</div>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSe4Rw018a4OA0i29SUQkukTl8ztJrDhayZlKKH61wmou6zUVA/viewform?usp=header" target="_blank">להזמנה כעת</a>
+        </div>
+
+        <!-- קטגוריית לנובו -->
+        <div class="product-title">לנובו</div>
+
+        <div class="product-card">
+            <img src="https://michlol.co.il/wp-content/uploads/25050336.jpg" alt="מחשב נייד">
+            <h3>מחשב נייד לנובו Z50</h3>
+            <p>מעבד I5, מסך 15 אינץ', SSD 256GB</p>
+            <div class="price">₪2800</div>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfN3IRGS7qQ_H9s8YhbF0ZrDVG0onrViEbrLrn5nAf1WMzZhQ/viewform?usp=header" target="_blank">להזמנה כעת</a>
+        </div>
+
+    </div>
+</section>
+
 <script>
 function showSection(id){
     document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
@@ -153,5 +273,5 @@ function showSection(id){
 }
 </script>
 
-</body> 
+</body>
 </html>
