@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
+<meta name="description" content="הומפיוטר - חנות מחשבים ומבצעים אונליין. החנות ממוקמת בירושלים, והיא חנות מאד מצליחה. מוכרים מחשבים וציוד היקפי מכל החברות המובילות.">
+
 <meta charset="UTF-8">
 <title>הומפיוטר</title>
+
+<!-- לוגו שיופיע בכרטיסייה -->
+<link rel="icon" type="image/png" href="https://github.com/i0527685490-source/homputer1/blob/main/%D7%94%D7%9C%D7%95%D7%92%D7%95_%D7%A9%D7%9C_%D7%94%D7%95%D7%9E%D7%A4%D7%99%D7%95%D7%98%D7%A8-removebg-preview.png?raw=true">
+
 <style>
 body {
     margin: 0;
@@ -19,7 +25,7 @@ header {
     align-items: center;
     border-bottom: 1px solid #ddd;
     position: relative;
-    height: 60px; /* שומרים על גובה הפס העליון */
+    height: 60px; /* גובה הפס העליון */
 }
 header h1 {
     font-size: 20px;
@@ -109,13 +115,13 @@ iframe {
     cursor: pointer;
     z-index: 1001;
 }
-/* לוגו גדול מבלי להגדיל את header */
+/* לוגו גדול בצד ימין */
 header .logo {
     position: absolute;
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
-    height: 140px; /* גובה הלוגו */
+    height: 140px;
     width: auto;
     cursor: pointer;
     object-fit: contain;
@@ -132,7 +138,8 @@ header .logo {
         <a onclick="showSection('computers')">מחשבים</a>
         <a onclick="showSection('about')">מבצעים</a>
     </nav>
-    <a href="https://www.gmail.com" target="_blank">
+    <!-- לוגו באתר עם קישור -->
+    <a href="https://i0527685490-source.github.io/homputer1/" target="_blank">
         <img class="logo" src="https://github.com/i0527685490-source/homputer/blob/main/%D7%94%D7%9C%D7%95%D7%92%D7%95_%D7%A9%D7%9C_%D7%94%D7%95%D7%9E%D7%A4%D7%99%D7%95%D7%98%D7%A8-removebg-preview.png?raw=true" alt="לוגו החנות">
     </a>
 </header>
@@ -157,13 +164,12 @@ header .logo {
 </section>
 
 <section id="about">
-<h2>מבצעים</h2>
+<h2></h2>
 <div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%; padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden; border-radius: 8px; will-change: transform;">
   <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
     src="https://www.canva.com/design/DAGxk9VGHJk/PTDmokGnIRSd1dH42Hm23Q/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
   </iframe>
 </div>
-<a href="https://www.canva.com/design/DAGxk9VGHJk/PTDmokGnIRSd1dH42Hm23Q/view?utm_content=DAGxk9VGHJk&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">מה שמופיע במבצעים</a> על ידי הומפיוטר הי קום HOMPUTER
 </section>
 
 <!-- Popup -->
@@ -187,14 +193,12 @@ window.addEventListener('DOMContentLoaded', () => {
     const isFirstVisit = !localStorage.getItem('visited');
 
     if (isFirstVisit) {
-        // אם זה הביקור הראשון - מיידי
         popup.classList.add('show');
         localStorage.setItem('visited', 'true');
     } else {
-        // ביקורים חוזרים - אחרי 40 שניות
         setTimeout(() => {
             popup.classList.add('show');
-        }, 40000); // 40000 מילישניות = 40 שניות
+        }, 40000); // 40 שניות
     }
 });
 </script>
