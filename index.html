@@ -5,64 +5,62 @@
 <meta name="description" content="הומפיוטר - חנות מחשבים ומבצעים אונליין. החנות ממוקמת בירושלים, והיא חנות מאד מצליחה. מוכרים מחשבים וציוד היקפי מכל החברות המובילות. החנות מציעה שירות אדיב, מחירים מצויינים, ומבחר של כל סוגי המחשבים והציוד ההיקפי.">
 <title>הומפיוטר</title>
 
-<!-- לוגו בכרטיסייה -->
 <link rel="icon" type="image/png" href="https://github.com/i0527685490-source/homputer1/blob/main/%D7%94%D7%9C%D7%95%D7%92%D7%95_%D7%A9%D7%9C_%D7%94%D7%95%D7%9E%D7%A4%D7%99%D7%95%D7%98%D7%A8-removebg-preview.png?raw=true">
 
 <style>
 body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #ffffff;
+    background: #f5f6fa;
 }
 
-/* פס עליון מודרני */
 header {
-    background: linear-gradient(90deg, #ffffff 0%, #f0f4ff 100%);
+    background: #ffffff;
     color: #2c3e50;
     padding: 10px 30px;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid #e0e6f0;
-    position: relative;
+    border-radius: 12px;
+    margin: 15px auto;
+    max-width: 1200px;
     height: 70px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
-header h1 {
-    font-size: 20px;
-    margin: 0;
+header .logo {
+    height: 80px;
+    width: auto;
+    object-fit: contain;
+    cursor: pointer;
 }
 nav {
     display: flex;
-    gap: 25px;
+    gap: 12px;
     align-items: center;
-    height: 100%;
 }
 nav a {
     text-decoration: none;
     color: #2c3e50;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 15px;
-    transition: color 0.3s;
     cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    transition: all 0.25s;
+    background: transparent;
 }
 nav a:hover {
+    border-color: #0056b3;
     color: #0056b3;
+    background: #f0f6ff;
 }
-header .logo {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 100px;
-    width: auto;
-    cursor: pointer;
-    object-fit: contain;
-    z-index: 10;
+nav a:active {
+    background: #0056b3;
+    color: #fff;
+    border-color: #0056b3;
 }
 
-/* תוכן */
 section { display: none; padding: 20px; }
 section.active { display: block; }
 main {
@@ -77,7 +75,6 @@ main {
 .left { width: 70%; padding: 0; box-sizing: border-box; }
 iframe { border: none; width: 100%; height: 100%; }
 
-/* מסגרת iframe */
 .home-frame {
     border-radius: 12px;
     width: 100%;
@@ -90,7 +87,6 @@ iframe { border: none; width: 100%; height: 100%; }
     border: 1px solid #fff;
 }
 
-/* Grid עבור 2x2 */
 .grid-2x2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -98,7 +94,6 @@ iframe { border: none; width: 100%; height: 100%; }
     gap: 10px;
 }
 
-/* כרטיסי מוצר */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -154,7 +149,6 @@ iframe { border: none; width: 100%; height: 100%; }
     background: #003f80;
 }
 
-/* כותרת קטגוריה בתוך גריד המוצרים */
 .product-title {
     grid-column: 1 / -1;
     background: #f0f4ff;
@@ -167,21 +161,67 @@ iframe { border: none; width: 100%; height: 100%; }
     text-align: right;
     box-shadow: inset 0 -1px 0 #e0e6f0;
 }
+
+/* יצירת קשר */
+.contact-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    padding: 30px 0;
+}
+.contact-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.contact-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+}
+.contact-card h3 {
+    margin: 0;
+    font-size: 22px;
+    color: #0056b3;
+    border-bottom: 1px solid #e0e6f0;
+    padding-bottom: 10px;
+}
+.contact-card iframe {
+    width: 100%;
+    height: 280px;
+    border-radius: 12px;
+    border: 0;
+}
+.contact-card p, .contact-card a {
+    font-size: 16px;
+    color: #2c3e50;
+    margin: 0;
+}
+.contact-card a {
+    font-weight: bold;
+    text-decoration: none;
+}
+.contact-card a:hover {
+    text-decoration: underline;
+}
 </style>
 </head>
 <body>
 
 <header>
-    <h1></h1>
-    <nav>
-        <a onclick="showSection('home')">דף הבית</a>
-        <a onclick="showSection('products')">מחשבים </a>
-        <a onclick="showSection('about')">מבצעים</a>
-
-    </nav>
     <a href="https://i0527685490-source.github.io/homputer1/" target="_blank">
         <img class="logo" src="https://github.com/i0527685490-source/homputer/blob/main/%D7%94%D7%9C%D7%95%D7%92%D7%95_%D7%A9%D7%9C_%D7%94%D7%95%D7%9E%D7%A4%D7%99%D7%95%D7%98%D7%A8-removebg-preview.png?raw=true" alt="לוגו החנות">
     </a>
+    <nav>
+        <a onclick="showSection('home')">דף הבית</a>
+        <a onclick="showSection('products')">מחשבים</a>
+        <a onclick="showSection('about')">מבצעים</a>
+        <a onclick="showSection('contact')">יצירת קשר</a>
+    </nav>
 </header>
 
 <section id="home" class="active">
@@ -199,24 +239,46 @@ iframe { border: none; width: 100%; height: 100%; }
 </main>
 </section>
 
-
-
 <section id="about">
-<div class="grid-2x2">
-    <div class="home-frame"><iframe loading="lazy" src="https://www.canva.com/design/DAGxk9VGHJk/PTDmokGnIRSd1dH42Hm23Q/view?embed" allowfullscreen></iframe></div>
-    <div class="home-frame"><iframe loading="lazy" src="https://www.canva.com/design/DAGxk9VGHJk/PTDmokGnIRSd1dH42Hm23Q/view?embed" allowfullscreen></iframe></div>
-    <div class="home-frame"><iframe loading="lazy" src="https://www.canva.com/design/DAGxk9VGHJk/PTDmokGnIRSd1dH42Hm23Q/view?embed" allowfullscreen></iframe></div>
-    <div class="home-frame"><iframe loading="lazy" src="https://www.canva.com/design/DAGxk9VGHJk/PTDmokGnIRSd1dH42Hm23Q/view?embed" allowfullscreen></iframe></div>
+<div class="running-card">
+  <h3>דף זה בהרצה</h3>
+  <p>בקרוב הדף יעבוד בעז"ה.</p>
 </div>
+
+<style>
+.running-card {
+  max-width: 300px;
+  margin: 20px auto;
+  padding: 20px;
+  text-align: center;
+  background: #f0f4ff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.running-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+.running-card h3 {
+  margin: 0 0 10px 0;
+  color: #0056b3;
+  font-size: 18px;
+}
+.running-card p {
+  margin: 0;
+  color: #333;
+  font-size: 14px;
+}
+</style>
+
 </section>
 
-<!-- קטגוריית מחשבים ב -->
+</section>
+
 <section id="products">
     <div class="products-grid">
-
-        <!-- קטגוריית אסוס -->
         <div class="product-title">אסוס</div>
-
         <div class="product-card">
             <img src="https://www.cdsoft.co.il/img/p/1/2/6/4/9/4/126494-thickbox_default.jpg" alt="מחשב נייד">
             <h3>מחשב נייד אסוס V43</h3>
@@ -224,45 +286,29 @@ iframe { border: none; width: 100%; height: 100%; }
             <div class="price">₪2900</div>
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSdB4HM781LToESOwm_BLdmNOUnYHu62v7HGKl4Elzwx1vyfqw/viewform?usp=header" target="_blank">להזמנה כעת</a>
         </div>
+    </div>
+</section>
 
-        <!-- קטגוריית דל -->
-        <div class="product-title">דל</div>
-
-        <div class="product-card">
-            <img src="https://d3m9l0v76dty0.cloudfront.net/system/photos/15677913/large/cba2432f962cb75f4d928aa833d61c4a.png" alt="מחשב נייד">
-            <h3>מחשב נייד דל X12</h3>
-            <p>מעבד I7, 15.6 אינץ', SSD 512GB</p>
-            <div class="price">₪3400</div>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdZc1rd3xDy3uBAJxWJ6MZXaGD6nasjldmUlMrvN2tAK-LweA/viewform?usp=header" target="_blank">להזמנה כעת</a>
+<section id="contact">
+    <h2>יצירת קשר</h2>
+    <div class="contact-container">
+        <div class="contact-card">
+            <h3>שלח הודעה</h3>
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfOrZYlBDUdhoezDQ8yhHnYy2IF7uxoeP2vxuH3vO7sqwTBeA/viewform?usp=header" allowfullscreen></iframe>
         </div>
-
-        <div class="product-card">
-            <img src="https://www.cdsoft.co.il/img/p/1/1/7/7/0/9/117709-thickbox_default.jpg" alt="מחשב נייד">
-            <h3>מחשב נייד דל Y54</h3>
-            <p>מעבד R5, מסך 14 אינץ', SSD 256GB</p>
-            <div class="price">₪2600</div>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdZc0M6TU9bUeZqy1njTEIN5QmEGUBijlYs-fo56QTI-1_YgA/viewform?usp=header" target="_blank">להזמנה כעת</a>
+        <div class="contact-card">
+            <h3>טלפון</h3>
+            <p><a href="tel:0527685490">052-7685490</a></p>
         </div>
-
-        <div class="product-card">
-            <img src="https://www.razcomputers.co.il/wp-content/uploads/2020/03/%D7%9E%D7%97%D7%A9%D7%91-%D7%A0%D7%99%D7%99%D7%93-ASUS-412F-%D7%90%D7%A1%D7%95%D7%A1-scaled.jpg" alt="מחשב נייד">
-            <h3>מחשב נייד דל Pro</h3>
-            <p>מעבד I3, מסך 15 אינץ', HDD 1TB</p>
-            <div class="price">₪2200</div>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSe4Rw018a4OA0i29SUQkukTl8ztJrDhayZlKKH61wmou6zUVA/viewform?usp=header" target="_blank">להזמנה כעת</a>
+        <div class="contact-card">
+            <h3>שעות פעילות</h3>
+            <p>15:00 - 18:00</p>
+            <p>21:00 - 23:00</p>
         </div>
-
-        <!-- קטגוריית לנובו -->
-        <div class="product-title">לנובו</div>
-
-        <div class="product-card">
-            <img src="https://michlol.co.il/wp-content/uploads/25050336.jpg" alt="מחשב נייד">
-            <h3>מחשב נייד לנובו Z50</h3>
-            <p>מעבד I5, מסך 15 אינץ', SSD 256GB</p>
-            <div class="price">₪2800</div>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfN3IRGS7qQ_H9s8YhbF0ZrDVG0onrViEbrLrn5nAf1WMzZhQ/viewform?usp=header" target="_blank">להזמנה כעת</a>
+        <div class="contact-card">
+            <h3>מיקום החנות</h3>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1349.929148283501!2d35.242173!3d31.84174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1she!2sil!4v1693598261234!5m2!1she!2sil" allowfullscreen></iframe>
         </div>
-
     </div>
 </section>
 
@@ -275,4 +321,3 @@ function showSection(id){
 
 </body>
 </html>
-
