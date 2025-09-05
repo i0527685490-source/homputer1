@@ -66,24 +66,22 @@ section.active { display: block; }
 main {
     display: flex;
     flex-direction: row;
-    background: #fdfdfd;
     min-height: 600px;
     gap: 20px;
 }
-.right, .left { height: 580px; }
+.right, .left { height: auto; }
 .right { width: 30%; }
 .left { width: 70%; padding: 0; box-sizing: border-box; }
-iframe { border: none; width: 100%; height: 100%; }
+iframe { border: none; width: 100%; }
 
 .home-frame {
     border-radius: 12px;
     width: 100%;
-    height: 100%;
 }
 .home-frame iframe {
     border-radius: 12px;
     width: 100%;
-    height: 100%;
+    height: 500px; /* גובה מותאם עד הסמל של נדרים פלוס */
     border: 1px solid #fff;
 }
 
@@ -208,44 +206,8 @@ iframe { border: none; width: 100%; height: 100%; }
 .contact-card a:hover {
     text-decoration: underline;
 }
-</style>
-</head>
-<body>
 
-<header>
-    <a href="https://i0527685490-source.github.io/homputer1/" target="_blank">
-        <img class="logo" src="https://github.com/i0527685490-source/homputer/blob/main/%D7%94%D7%9C%D7%95%D7%92%D7%95_%D7%A9%D7%9C_%D7%94%D7%95%D7%9E%D7%A4%D7%99%D7%95%D7%98%D7%A8-removebg-preview.png?raw=true" alt="לוגו החנות">
-    </a>
-    <nav>
-        <a onclick="showSection('home')">דף הבית</a>
-        <a onclick="showSection('products')">מחשבים</a>
-        <a onclick="showSection('about')">מבצעים</a>
-        <a onclick="showSection('contact')">יצירת קשר</a>
-    </nav>
-</header>
-
-<section id="home" class="active">
-<main>
-    <div class="right">
-        <div class="home-frame">
-            <iframe src="https://www.matara.pro/nedarimplus/online/?mosad=7011337"></iframe>
-        </div>
-    </div>
-    <div class="left">
-        <div class="home-frame">
-            <iframe loading="lazy" src="https://docs.google.com/forms/d/e/1FAIpQLSdcDFr0AYM1sMMG5YI_mR0afsOWlH1CzU9IoYbFVEDuEPeTuw/viewform?usp=header" allowfullscreen></iframe>
-        </div>
-    </div>
-</main>
-</section>
-
-<section id="about">
-<div class="running-card">
-  <h3>דף זה בהרצה</h3>
-  <p>בקרוב הדף יעבוד בעז"ה.</p>
-</div>
-
-<style>
+/* כרטיסי הרצה */
 .running-card {
   max-width: 300px;
   margin: 20px auto;
@@ -271,9 +233,54 @@ iframe { border: none; width: 100%; height: 100%; }
   font-size: 14px;
 }
 </style>
+</head>
+<body>
 
+<header>
+    <a href="https://i0527685490-source.github.io/homputer1/" target="_blank">
+        <img class="logo" src="https://github.com/i0527685490-source/homputer/blob/main/%D7%94%D7%9C%D7%95%D7%92%D7%95_%D7%A9%D7%9C_%D7%94%D7%95%D7%9E%D7%A4%D7%99%D7%95%D7%98%D7%A8-removebg-preview.png?raw=true" alt="לוגו החנות">
+    </a>
+    <nav>
+        <a onclick="showSection('home')">דף הבית</a>
+        <a onclick="showSection('products')">מחשבים</a>
+<!--
+        <a onclick="showSection('about')">בהרצה ⏳</a>
+-->
+        <a onclick="showSection('repair')">הזמנת תיקון</a>
+        <a onclick="showSection('contact')">יצירת קשר</a>
+    </nav>
+</header>
+
+<section id="home" class="active">
+<main>
+    <div class="right">
+        <div class="home-frame">
+            <iframe src="https://www.matara.pro/nedarimplus/online/?mosad=7011337"></iframe>
+        </div>
+    </div>
+    <div class="left">
+        <div class="home-frame">
+            <iframe loading="lazy" src="file:///C:/Users/%D7%94%D7%A9%D7%9B%D7%A8%D7%94/Desktop/%D7%A4%D7%A8%D7%A1%D7%95%D7%9E%D7%AA%20%D7%A7%D7%95%D7%A4%D7%A6%D7%AA%20%D7%91%D7%A7%D7%95%D7%93.HTML" allowfullscreen></iframe>
+        </div>
+    </div>
+</main>
 </section>
 
+<section id="repair">
+    <h2></h2>
+    <div class="home-frame">
+        <!-- כאן ניתן לשנות את הגובה עם px -->
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdcDFr0AYM1sMMG5YI_mR0afsOWlH1CzU9IoYbFVEDuEPeTuw/viewform?usp=header" 
+                style="height: 1460px;" allowfullscreen></iframe>
+        <!-- שינוי הגובה: החלף את 800px לערך רצוי -->
+    </div>
+</section>
+
+<section id="about">
+<div class="running-card">
+  <h3>דף זה בהרצה</h3>
+  <p>בקרוב הדף יעבוד בעז"ה.</p>
+</div>
 </section>
 
 <section id="products">
@@ -320,10 +327,9 @@ iframe { border: none; width: 100%; height: 100%; }
         </div>
     </div>
 </section>
-</section>
 
 <section id="contact">
-    <h2>יצירת קשר</h2>
+    <h2></h2>
     <div class="contact-container">
         <div class="contact-card">
             <h3>שלח הודעה</h3>
@@ -354,6 +360,3 @@ function showSection(id){
 
 </body>
 </html>
-
-
-
