@@ -2,374 +2,434 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="הומפיוטר - יש בית למחשב שלך - חנות המחשבים של נווה יעקב והסביבה מעבדה מקצועית במקום כל סוגי התיקונים מכירה של כל חברות המחשבים והציוד ההיקפי הטוב ביותר צמוד למרכז המסחרי">
-<title>הומפיוטר</title>
+<title>הומפיוטר - יש בית למחשב שלך</title>
 
-<!-- Favicon -->
 <link rel="icon" type="image/png" href="https://github.com/i0527685490-source/homputer1/blob/main/%D7%94%D7%9C%D7%95%D7%92%D7%95_%D7%A9%D7%9C_%D7%94%D7%95%D7%9E%D7%A4%D7%99%D7%95%D7%98%D7%A8-removebg-preview.png?raw=true">
 
-<!-- Google / SEO -->
 <meta name="title" content="הומפיוטר">
-<meta name="description" content="הומפיוטר - יש בית למחשב שלך">
-
-<!-- Open Graph / Facebook / LinkedIn -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://i0527685490-source.github.io/homputer1/">
-<meta property="og:title" content="הומפיוטר">
-<meta property="og:description" content="הומפיוטר - יש בית למחשב שלך">
 <meta property="og:image" content="https://github.com/i0527685490-source/homputer1/blob/main/%D7%94%D7%9C%D7%95%D7%92%D7%95_%D7%A9%D7%9C_%D7%94%D7%95%D7%9E%D7%A4%D7%99%D7%95%D7%98%D7%A8-removebg-preview.png?raw=true">
-
-<!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://i0527685490-source.github.io/homputer1/">
-<meta property="twitter:title" content="הומפיוטר">
-<meta property="twitter:description" content="יש בית למחשב שלך">
-<meta property="twitter:image" content="https://github.com/i0527685490-source/homputer1/blob/main/%D7%94%D7%9C%D7%95%D7%92%D7%95_%D7%A9%D7%9C_%D7%94%D7%95%D7%9E%D7%A4%D7%99%D7%95%D7%98%D7%A8-removebg-preview.png?raw=true">
 
 <style>
+/* גלובלי */
 body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f5f6fa;
+    background: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
 }
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+h2 {
+    color: #0056b3;
+    text-align: right;
+    border-bottom: 2px solid #e0e6f0;
+    padding-bottom: 10px;
+    margin-top: 0;
+    font-size: 24px;
+}
+section { display: none; padding: 20px 0; }
+section.active { display: block; }
+iframe { border: none; width: 100%; }
 
+/* כותרת עליונה (Header) */
 header {
     background: #ffffff;
-    color: #2c3e50;
-    padding: 10px 30px;
+    padding: 10px 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 12px;
-    margin: 15px auto;
-    max-width: 1200px;
-    height: 70px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
+/* שינוי 1: סדר הלוגו והניווט בתוך ה-header-container */
+.header-container {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 0;
+    width: 100%;
+}
+
 header .logo {
-    height: 80px;
+    height: 60px;
     width: auto;
     object-fit: contain;
-    cursor: pointer;
+    /* החזרת הלוגו לצד ימין - זה כבר קורה דרך dir="rtl" וה-justify-content: space-between */
 }
 nav {
     display: flex;
-    gap: 12px;
+    gap: 15px;
     align-items: center;
 }
 nav a {
     text-decoration: none;
     color: #2c3e50;
-    font-weight: 500;
-    font-size: 15px;
-    cursor: pointer;
-    padding: 6px 10px;
-    border-radius: 6px;
-    border: 1px solid transparent;
-    transition: all 0.25s;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 8px 15px;
+    border-radius: 8px;
+    transition: all 0.3s;
     background: transparent;
+    /* שינוי 2: הוספת סמן אצבע לכפתורי הניווט */
+    cursor: pointer; 
 }
-nav a:hover {
-    border-color: #0056b3;
-    color: #0056b3;
-    background: #f0f6ff;
-}
-nav a:active {
+nav a.active-link, nav a:hover {
     background: #0056b3;
     color: #fff;
-    border-color: #0056b3;
+    box-shadow: 0 2px 4px rgba(0, 86, 179, 0.4);
 }
 
-section { display: none; padding: 20px; }
-section.active { display: block; }
-main {
-    display: flex;
-    flex-direction: row;
-    min-height: 600px;
-    gap: 20px;
-}
-.right, .left { height: auto; }
-.right { width: 30%; }
-.left { width: 70%; padding: 0; box-sizing: border-box; }
-iframe { border: none; width: 100%; }
-
-.home-frame {
+/* דף הבית (Home) */
+.hero-section {
+    background: linear-gradient(135deg, #0056b3 0%, #007bff 100%);
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
     border-radius: 12px;
-    width: 100%;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
-.home-frame iframe {
-    border-radius: 12px;
-    width: 100%;
-    height: 500px;
-    border: 1px solid #fff;
+.hero-section h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+.hero-section p {
+    font-size: 20px;
+    opacity: 0.9;
+    margin-bottom: 30px;
+}
+.hero-section a {
+    cursor: pointer; /* הוספת סמן אצבע גם לכפתור בדף הבית */
 }
 
-.grid-2x2 {
+.services-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-auto-rows: 366px;
-    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+.service-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    text-align: right;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-right: 5px solid #0056b3;
+}
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+.service-card .icon {
+    font-size: 30px;
+    color: #0056b3;
+    margin-bottom: 10px;
+    display: block;
+}
+.service-card h3 {
+    font-size: 20px;
+    margin: 0 0 10px 0;
+    color: #2c3e50;
+}
+.service-card p {
+    font-size: 15px;
+    color: #555;
 }
 
+/* מוצרים (Products) */
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    padding-top: 10px;
+}
+.product-title {
+    grid-column: 1 / -1;
+    background: #e6f0ff;
+    color: #0056b3;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin: 10px 0;
+    text-align: right;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 .product-card {
     border: 1px solid #e0e6f0;
     border-radius: 12px;
     background: #fff;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     padding: 15px;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     transition: transform 0.2s;
-}
-.product-card:hover {
-    transform: translateY(-5px);
+    overflow: hidden;
 }
 .product-card img {
-    width: 100%;
-    max-height: 150px;
+    height: 140px;
+    width: auto;
     object-fit: contain;
-    margin-bottom: 10px;
+    margin: 0 auto 15px;
 }
 .product-card h3 {
-    font-size: 16px;
-    margin: 8px 0;
+    font-size: 18px;
+    margin: 5px 0;
     color: #2c3e50;
 }
-.product-card p {
-    font-size: 14px;
-    color: #555;
-    margin: 4px 0;
-}
 .product-card .price {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
-    color: #0056b3;
-    margin: 10px 0;
+    color: #d63031;
+    margin: 10px 0 15px 0;
 }
 .product-card a {
-    background: #0056b3;
+    background: #00a86b;
     color: #fff;
-    padding: 8px 12px;
+    padding: 10px 15px;
     border-radius: 8px;
     text-decoration: none;
     font-weight: bold;
     transition: background 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 168, 107, 0.4);
+    cursor: pointer; /* הוספת סמן אצבע לכפתורי ההזמנה */
 }
 .product-card a:hover {
-    background: #003f80;
+    background: #008f5a;
 }
 
-.product-title {
-    grid-column: 1 / -1;
-    background: #f0f4ff;
-    color: #0056b3;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 10px 15px;
-    border-radius: 8px;
-    margin: 10px 0;
-    text-align: right;
-    box-shadow: inset 0 -1px 0 #e0e6f0;
-}
-
-/* יצירת קשר */
+/* יצירת קשר (Contact) */
 .contact-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 30px;
-    padding: 30px 0;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 10px 0;
 }
 .contact-card {
     background: #fff;
-    border-radius: 16px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 25px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-.contact-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+    gap: 15px;
+    text-align: right;
 }
 .contact-card h3 {
-    margin: 0;
-    font-size: 22px;
+    font-size: 20px;
     color: #0056b3;
-    border-bottom: 1px solid #e0e6f0;
-    padding-bottom: 10px;
-}
-.contact-card iframe {
-    width: 100%;
-    height: 280px;
-    border-radius: 12px;
-    border: 0;
-}
-.contact-card p, .contact-card a {
-    font-size: 16px;
-    color: #2c3e50;
-    margin: 0;
+    border-bottom: 1px solid #f0f4ff;
+    padding-bottom: 8px;
+    margin-bottom: 5px;
 }
 .contact-card a {
-    font-weight: bold;
+    font-size: 16px;
+    font-weight: 600;
+    color: #2c3e50;
     text-decoration: none;
+    transition: color 0.2s;
 }
 .contact-card a:hover {
+    color: #0056b3;
     text-decoration: underline;
 }
 
-/* כרטיסי הרצה */
-.running-card {
-  max-width: 300px;
-  margin: 20px auto;
-  padding: 20px;
-  text-align: center;
-  background: #f0f4ff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
+/* הרצה (About - renamed from running-card) */
+.running-message {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    text-align: center;
+    background: #fffae6;
+    border: 1px solid #ffd700;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
-.running-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+.running-message h3 {
+    margin: 0 0 10px 0;
+    color: #cc9900;
+    font-size: 22px;
 }
-.running-card h3 {
-  margin: 0 0 10px 0;
-  color: #0056b3;
-  font-size: 18px;
+.running-message p {
+    margin: 0;
+    color: #555;
+    font-size: 16px;
 }
-.running-card p {
-  margin: 0;
-  color: #333;
-  font-size: 14px;
-}
+
 </style>
 </head>
 <body>
 
 <header>
-    <a href="https://i0527685490-source.github.io/homputer1/" target="_blank">
-        <img class="logo" src="https://github.com/i0527685490-source/homputer/blob/main/%D7%94%D7%9C%D7%95%D7%92%D7%95_%D7%A9%D7%9C_%D7%94%D7%95%D7%9E%D7%A4%D7%99%D7%95%D7%98%D7%A8-removebg-preview.png?raw=true" alt="לוגו החנות">
-    </a>
-    <nav>
-        <a onclick="showSection('home')">דף הבית</a>
-        <a onclick="showSection('products')">מחשבים</a>
-        <a onclick="showSection('repair')">הזמנת תיקון</a>
-        <a onclick="showSection('contact')">יצירת קשר</a>
-    </nav>
+    <div class="header-container container">
+        <a href="https://i0527685490-source.github.io/homputer1/" target="_blank">
+            <img class="logo" src="https://github.com/i0527685490-source/homputer/blob/main/%D7%94%D7%9C%D7%95%D7%92%D7%95_%D7%A9%D7%9C_%D7%94%D7%95%D7%9E%D7%A4%D7%99%D7%95%D7%98%D7%A8-removebg-preview.png?raw=true" alt="לוגו החנות">
+        </a>
+        <nav>
+            <a onclick="showSection('home', this)" class="active-link">דף הבית</a>
+            <a onclick="showSection('products', this)">מחשבים</a>
+            <a onclick="showSection('repair', this)">הזמנת תיקון</a>
+            <a onclick="showSection('contact', this)">יצירת קשר</a>
+        </nav>
+    </div>
 </header>
 
+<div class="container">
 <section id="home" class="active">
-<main>
-    <div class="right">
-        <div class="home-frame">
-            <iframe src="https://www.matara.pro/nedarimplus/online/?mosad=7011337"></iframe>
+    <div class="hero-section">
+        <h1>הומפיוטר - יש בית למחשב שלך</h1>
+        <p>חנות המחשבים והמעבדה המקצועית בנווה יעקב והסביבה. שירות אמין, מהיר ומקצועי.</p>
+        <a onclick="showSection('products', document.querySelector('nav a:nth-child(2)'))" 
+           style="display: inline-block; background: #fff; color: #0056b3; padding: 10px 25px; border-radius: 8px; font-weight: bold; text-decoration: none; font-size: 18px; transition: background 0.3s;">
+           לרכישת מחשב חדש
+        </a>
+    </div>
+
+    <h2>השירותים שלנו</h2>
+    <div class="services-grid">
+        <div class="service-card">
+            <span class="icon">💻</span>
+            <h3>מכירת מחשבים וציוד</h3>
+            <p>מגוון רחב של מחשבים ניידים ונייחים מכל החברות המובילות, ציוד היקפי ואביזרים.</p>
+        </div>
+        <div class="service-card">
+            <span class="icon">🔧</span>
+            <h3>מעבדת תיקונים מקצועית</h3>
+            <p>אבחון ותיקון מהיר לכל סוגי התקלות: חומרה, תוכנה, הסרת וירוסים ושדרוגים.</p>
+        </div>
+        <div class="service-card">
+            <span class="icon">✅</span>
+            <h3>שירות ואחריות</h3>
+            <p>שירות לקוחות אישי ואמין ואחריות יצרן מלאה על כל המחשבים הנמכרים בחנות.</p>
+        </div>
+        <div class="service-card">
+            <span class="icon">📍</span>
+            <h3>חנות נווה יעקב</h3>
+            <p>ממוקמים צמוד למרכז המסחרי, זמינים עבורכם בשעות הפעילות.</p>
         </div>
     </div>
-    <div class="left">
-        <div class="home-frame">
-            <iframe loading="lazy" src="https://i0527685490-source.github.io/dfjtyj/" allowfullscreen></iframe>
-        </div>
-    </div>
-</main>
 </section>
 
 <section id="repair">
-    <h2></h2>
+    <h2>הזמנת תיקון ואיסוף מכשיר</h2>
+    <p>מלאו את הפרטים ונחזור אליכם בהקדם לתיאום איסוף או קבלה במעבדה.</p>
     <div class="home-frame">
         <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdcDFr0AYM1sMMG5YI_mR0afsOWlH1CzU9IoYbFVEDuEPeTuw/viewform?usp=header" 
-                style="height: 1580px;" allowfullscreen></iframe>
+                style="height: 1200px; border-radius: 12px;" allowfullscreen></iframe>
     </div>
 </section>
 
 <section id="about">
-<div class="running-card">
-  <h3>דף זה בהרצה</h3>
-  <p>בקרוב הדף יעבוד בעז"ה.</p>
-</div>
+    <div class="running-message">
+        <h3>דף זה בהרצה</h3>
+        <p>אנו עובדים על תוכן הדף. בקרוב הדף יעבוד בעז"ה!</p>
+    </div>
 </section>
 
 <section id="products">
+    <h2>מגוון מחשבים ניידים</h2>
     <div class="products-grid">
-        <div class="product-title">אסוס</div>
+        <div class="product-title">אסוס (ASUS)</div>
         <div class="product-card">
             <img src="https://www.cdsoft.co.il/img/p/1/2/6/4/9/4/126494-thickbox_default.jpg" alt="מחשב נייד">
             <h3>מחשב נייד אסוס V43</h3>
             <p>מעבד I5, מסך 16.5 אינץ' פול HD</p>
-            <div class="price">₪2900</div>
+            <div class="price">₪2,900</div>
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSdB4HM781LToESOwm_BLdmNOUnYHu62v7HGKl4Elzwx1vyfqw/viewform?usp=header" target="_blank">להזמנה כעת</a>
         </div>
 
-        <div class="product-title">דל</div>
+        <div class="product-title">דל (Dell)</div>
         <div class="product-card">
             <img src="https://d3m9l0v76dty0.cloudfront.net/system/photos/15677913/large/cba2432f962cb75f4d928aa833d61c4a.png" alt="מחשב נייד">
             <h3>מחשב נייד דל X12</h3>
             <p>מעבד I7, 15.6 אינץ', SSD 512GB</p>
-            <div class="price">₪3400</div>
+            <div class="price">₪3,400</div>
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSdZc1rd3xDy3uBAJxWJ6MZXaGD6nasjldmUlMrvN2tAK-LweA/viewform?usp=header" target="_blank">להזמנה כעת</a>
         </div>
         <div class="product-card">
             <img src="https://www.cdsoft.co.il/img/p/1/1/7/7/0/9/117709-thickbox_default.jpg" alt="מחשב נייד">
             <h3>מחשב נייד דל Y54</h3>
             <p>מעבד R5, מסך 14 אינץ', SSD 256GB</p>
-            <div class="price">₪2600</div>
+            <div class="price">₪2,600</div>
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSdZc0M6TU9bUeZqy1njTEIN5QmEGUBijlYs-fo56QTI-1_YgA/viewform?usp=header" target="_blank">להזמנה כעת</a>
         </div>
         <div class="product-card">
             <img src="https://www.razcomputers.co.il/wp-content/uploads/2020/03/%D7%9E%D7%97%D7%A9%D7%91-%D7%A0%D7%99%D7%99%D7%93-ASUS-412F-%D7%90%D7%A1%D7%95%D7%A1-scaled.jpg" alt="מחשב נייד">
             <h3>מחשב נייד דל Pro</h3>
             <p>מעבד I3, מסך 15 אינץ', HDD 1TB</p>
-            <div class="price">₪2200</div>
+            <div class="price">₪2,200</div>
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSe4Rw018a4OA0i29SUQkukTl8ztJrDhayZlKKH61wmou6zUVA/viewform?usp=header" target="_blank">להזמנה כעת</a>
         </div>
 
-        <div class="product-title">לנובו</div>
+        <div class="product-title">לנובו (Lenovo)</div>
         <div class="product-card">
             <img src="https://michlol.co.il/wp-content/uploads/25050336.jpg" alt="מחשב נייד">
             <h3>מחשב נייד לנובו Z50</h3>
             <p>מעבד I5, מסך 15 אינץ', SSD 256GB</p>
-            <div class="price">₪2800</div>
+            <div class="price">₪2,800</div>
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSfN3IRGS7qQ_H9s8YhbF0ZrDVG0onrViEbrLrn5nAf1WMzZhQ/viewform?usp=header" target="_blank">להזמנה כעת</a>
         </div>
     </div>
 </section>
 
 <section id="contact">
-    <h2></h2>
+    <h2>יצירת קשר עם הומפיוטר</h2>
     <div class="contact-container">
         <div class="contact-card">
-            <h3>שלח הודעה</h3>
+            <h3>שלח הודעה (טופס מקוון)</h3>
             <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfOrZYlBDUdhoezDQ8yhHnYy2IF7uxoeP2vxuH3vO7sqwTBeA/viewform?usp=header" allowfullscreen></iframe>
         </div>
         <div class="contact-card">
-            <h3>טלפון</h3>
-            <p><a href="tel:0527685490">052-7685490</a></p>
+            <h3>טלפון ו-WhatsApp</h3>
+            <p><a href="tel:0527685490">📞 052-7685490</a></p>
         </div>
         <div class="contact-card">
-            <h3>שעות פעילות</h3>
-            <p>15:00 - 18:00</p>
-            <p>21:00 - 23:00</p>
+            <h3>שעות פעילות החנות</h3>
+            <p>א'-ה': 15:00 - 18:00</p>
+            <p>א'-ה': 21:00 - 23:00</p>
+         
         </div>
         <div class="contact-card">
-            <h3>מיקום החנות</h3>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1349.929148283501!2d35.242173!3d31.84174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1she!2sil!4v1693598261234!5m2!1she!2sil" allowfullscreen></iframe>
+            <h3>מיקום החנות (נווה יעקב)</h3>
+            <iframe src="https://maps.google.com/maps?q=נווה+יעקב&t=&z=13&ie=UTF8&iwloc=&output=embed" allowfullscreen></iframe>
+            <p style="margin-top: 10px;">ויקטור ויוליוס 606 נווה יעקב ירושלים</p>
         </div>
     </div>
 </section>
 
-<script>
-function showSection(id){
+</div> <script>
+function showSection(id, element) {
+    // הסתרת כל הסקשנים
     document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+    // הצגת הסקשן הרצוי
     document.getElementById(id).classList.add('active');
+
+    // ניהול ה-Active link בניווט
+    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active-link'));
+    if (element) {
+        element.classList.add('active-link');
+    }
 }
+
+// קביעת הקישור הפעיל בעת טעינת הדף
+document.addEventListener('DOMContentLoaded', () => {
+    // מוודא שדף הבית פעיל ומוסיף לו את המחלקה active-link
+    const homeLink = document.querySelector('nav a[onclick*="home"]');
+    if (homeLink) {
+        homeLink.classList.add('active-link');
+    }
+});
 </script>
 
 </body>
