@@ -3,25 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="הומפיוטר - יש בית למחשב שלך - חנות המחשבים של נווה יעקב והסביבה מעבדה מקצועית במקום כל סוגי התיקונים מכירה של כל חברות המחשבים והציוד ההיקפי הטוב ביותר צמוד למרכז המסחרי">
+    <title>הומפיוטר - יש בית למחשב שלך</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <title>הומפיוטר - יש בית למחשב שלך | מעבדת וחנות מחשבים בנווה יעקב, ירושלים | מכירה, תיקונים ושדרוגים</title>
-    
-    <meta name="description" content="הומפיוטר - חנות ומעבדת המחשבים המובילה בנווה יעקב והסביבה. מחשבים ניידים (HP, Dell, Lenovo), תיקונים מקצועיים, אבחון מהיר ואחריות מלאה. הקליקו להזמנת מחשב או תיקון!">
-    
-    <meta name="keywords" content="מחשבים ניידים, מעבדת מחשבים ירושלים, תיקון מחשבים נווה יעקב, חנות מחשבים נווה יעקב, הומפיוטר, מחשבי HP Dell Lenovo Asus, שדרוג מחשבים, מכירת מחשבים">
-    
-    <meta name="robots" content="index, follow">
-    
-    <meta name="title" content="הומפיוטר | מעבדת מחשבים וחנות מחשבים בנווה יעקב, ירושלים">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <link rel="icon" type="image/png" href="https://github.com/i0527685490-source/homputer1/blob/main/%D7%94%D7%9C%D7%95%D7%92%D7%95_%D7%A9%D7%9C_%D7%94%D7%95%D7%9E%D7%A4%D7%99%D7%95%D7%98%D7%A8-removebg-preview.png?raw=true">
     <meta property="og:image" content="https://github.com/i0527685490-source/homputer1/blob/main/%D7%94%D7%9C%D7%95%D7%92%D7%95_%D7%A9%D7%9C_%D7%94%D7%95%D7%9E%D7%A4%D7%99%D7%95%D7%98%D7%A8-removebg-preview.png?raw=true">
     <meta property="og:type" content="website">
     <meta property="twitter:card" content="summary_large_image">
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
+    <meta name="title" content="הומפיוטר - יש בית למחשב שלך">
 
     <style>
         /* ==================== גלובלי ==================== */
@@ -152,6 +145,57 @@
             flex-direction: column;
         }
         .service-card .icon { font-size: 38px; color: var(--primary-color); margin-bottom: 15px; display: block; }
+
+        /* ==================== מאמרים (Articles) - CSS חדש הוכנס כאן ==================== */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .article-button {
+            background: #ffffff;
+            border: 2px solid var(--secondary-color);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: right;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 150px;
+        }
+
+        .article-button:hover {
+            background: var(--secondary-color);
+            color: #fff;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .article-button:hover h3 {
+             color: #fff;
+        }
+
+        .article-button h3 {
+            margin: 0 0 10px;
+            font-size: 20px;
+            color: var(--primary-color);
+            transition: color 0.3s;
+        }
+
+        .article-button p {
+            margin: 0;
+            font-size: 15px;
+            color: var(--text-light);
+            transition: color 0.3s;
+        }
+
+        .article-button:hover p {
+            color: #f0f0f0;
+        }
 
         /* ==================== מוצרים (Products) - עיצוב משופר! ==================== */
         /* סינון צף */
@@ -371,6 +415,32 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.4);
             position: relative;
             text-align: right;
+            animation: fadeIn 0.3s; /* הוספת אנימציה לחלונות קופצים */
+        }
+
+        /* חלון קופץ למאמרים - רוחב גדול יותר */
+        .modal-content.article-modal {
+             max-width: 950px; 
+             margin: 3% auto;
+        }
+
+        .modal-content.article-modal h3 {
+             font-size: 30px;
+             color: var(--primary-color);
+             border-bottom: 2px solid var(--secondary-color);
+             padding-bottom: 10px;
+        }
+
+        .modal-content.article-modal p {
+            font-size: 17px;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            text-indent: 10px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .modal-content.small {
@@ -432,6 +502,14 @@
                 padding: 8px 10px;
             }
 
+            /* מאמרים */
+            .articles-grid {
+                 grid-template-columns: 1fr;
+            }
+            .article-button {
+                 min-height: auto;
+            }
+
             /* סינון ומוצרים */
             .filter-controls {
                 top: 135px; /* גובה ההדר החדש + מרווח קטן */
@@ -472,6 +550,12 @@
             .modal-content.small {
                 margin: 20% auto;
             }
+            .modal-content.article-modal h3 {
+                font-size: 24px;
+            }
+            .modal-content.article-modal p {
+                 font-size: 16px;
+            }
         }
     </style>
 </head>
@@ -485,6 +569,7 @@
         <nav>
             <a onclick="showSection('home', this)" class="active-link">דף הבית</a>
             <a onclick="showSection('products', this)">מחשבים</a>
+            <a onclick="showSection('articles', this)">מאמרים</a> 
             <a onclick="showSection('repair', this)">הזמנת תיקון</a>
             <a onclick="showSection('contact', this)">יצירת קשר</a>
         </nav>
@@ -523,6 +608,33 @@
             <span class="icon">📍</span>
             <h3>החנות של נווה יעקב והסביבה</h3>
             <p>ממוקמים בלב השכונה, צמוד למרכז המסחרי, זמינים עבורכם בשעות הפעילות לנוחות מירבית.</p>
+        </div>
+    </div>
+</section>
+
+<section id="articles">
+    <h2 data-aos="fade-right">מאמרים וטיפים לתחזוקת המחשב</h2>
+    <p data-aos="fade-up">כאן תמצאו מידע חשוב שיעזור לכם לשמור על המחשב שלכם, למנוע תקלות יקרות ולעבוד בצורה יעילה יותר.</p>
+    
+    <div class="articles-grid">
+        <div class="article-button" onclick="openArticle('damage')" data-aos="fade-up">
+            <h3>5 הרגלים שיפגעו במחשב הנייד שלכם - ואיך למנוע אותם 💧</h3>
+            <p>בדיקה פשוטה שתחסוך לכם אלפי שקלים. הימנעו מנזקי חום, מכות ונוזלים.</p>
+        </div>
+
+        <div class="article-button" onclick="openArticle('viruses')" data-aos="fade-up" data-aos-delay="100">
+            <h3>וירוסים ונוזקות: 3 דרכים להישאר מוגנים ברשת 🛡️</h3>
+            <p>הסבר פשוט על אנטי-וירוס, גיבויים ואופן הגלישה הנכון שישמור עליכם.</p>
+        </div>
+
+        <div class="article-button" onclick="openArticle('speed')" data-aos="fade-up" data-aos-delay="200">
+            <h3>המחשב איטי? 4 פעולות פשוטות להאצת המחשב הביתי 🚀</h3>
+            <p>ניקוי קבצים, ניהול תוכנות רקע ובדיקת שטח פנוי בכונן.</p>
+        </div>
+        
+        <div class="article-button" onclick="openArticle('battery')" data-aos="fade-up" data-aos-delay="300">
+            <h3>כך תשמרו על חיי הסוללה של המחשב הנייד לאורך זמן 🔋</h3>
+            <p>האם כדאי להשאיר את המטען מחובר תמיד? כל המיתוסים והאמת.</p>
         </div>
     </div>
 </section>
@@ -570,7 +682,7 @@
     <div class="products-grid">
         <div class="product-title group-hp" data-aos="fade-up">HP</div>
         <div class="product-card" data-company="hp" data-price="4200" data-aos="fade-up">
-            <img src="https://m.media-amazon.com/images/I/71YFh2P7VQL._AC_UF894,1000_QL80_.jpg" alt="מחשב HP Spectre">
+            <img src="https://www.payngo.co.il/cdn-cgi/image/format=auto,metadata=none,quality=90/media/New-Icons/Category-icons/HP_Spectre.png" alt="מחשב HP Spectre">
             <h3>HP ספקטר X360</h3>
             <p>מעבד I7 עוצמתי (דגם דק), מסך מגע 13.3 אינץ' 4K. מחשב פרימיום נייד במיוחד.</p>
             <div class="price">₪4,200</div>
@@ -578,7 +690,7 @@
             <a onclick="openModal('HP ספקטר X360', 4200)" style="cursor: pointer;">✅ להזמנה כעת</a>
         </div>
         <div class="product-card" data-company="hp" data-price="2450" data-aos="fade-up" data-aos-delay="100">
-            <img src="https://m.media-amazon.com/images/I/71K2gq0f86L.jpg" alt="מחשב HP Pavilion">
+            <img src="https://psale.co.il/wp-content/uploads/2022/08/02-700x700-1.jpg" alt="מחשב HP Pavilion">
             <h3>HP פביליון 15</h3>
             <p>מעבד R5, מסך 15.6 אינץ' HD, זיכרון 8GB. פתרון משתלם לשימוש יומיומי.</p>
             <div class="price">₪2,450</div>
@@ -586,7 +698,7 @@
             <a onclick="openModal('HP פביליון 15', 2450)" style="cursor: pointer;">✅ להזמנה כעת</a>
         </div>
         <div class="product-card" data-company="hp" data-price="3600" data-aos="fade-up" data-aos-delay="200">
-            <img src="https://cdn.groo.co.il/files/Products/628178_lg.jpg" alt="מחשב HP Envy">
+            <img src="https://www.doogee.co.il/pub/116227/coreboox-pro/corebook_pro2__2_.jpg?quality=65&width=&height=&mode=max" alt="מחשב HP Envy">
             <h3>HP אנווי 14</h3>
             <p>מעבד I5 דור 11, זיכרון 16GB, מסך 14 אינץ'. מתאים לעבודה גרפית ועיצוב קל.</p>
             <div class="price">₪3,600</div>
@@ -597,7 +709,7 @@
 
         <div class="product-title group-dell" data-aos="fade-up">דל (Dell)</div>
         <div class="product-card" data-company="dell" data-price="3400" data-aos="fade-up">
-            <img src="https://d3m9l0v76dty0.cloudfront.net/system/photos/15677913/large/cba2432f962cb75f4d928aa833d61c4a.png" alt="מחשב נייד דל X12">
+            <img src="https://www.cdsoft.co.il/img/p/1/2/3/2/3/3/123233-large_default.jpg" alt="מחשב נייד דל X12">
             <h3>דל XPS 13</h3>
             <p>מעבד I7 דור אחרון, 13.4 אינץ' אינפיניטי אדג'. מחשב הדגל של Dell, קומפקטי ומרהיב.</p>
             <div class="price">₪3,400</div>
@@ -605,7 +717,7 @@
             <a onclick="openModal('דל XPS 13', 3400)" style="cursor: pointer;">✅ להזמנה כעת</a>
         </div>
         <div class="product-card" data-company="dell" data-price="2600" data-aos="fade-up" data-aos-delay="100">
-            <img src="https://www.cdsoft.co.il/img/p/1/1/7/7/0/9/117709-thickbox_default.jpg" alt="מחשב נייד דל Y54">
+            <img src="https://www.payngo.co.il/cdn-cgi/image/format=auto,metadata=none,quality=90/media/New-Icons/Category-icons/HP_Spectre.png" alt="מחשב נייד דל Y54">
             <h3>דל לטיטיוד 15</h3>
             <p>מעבד R5, מסך 15.6 אינץ' HD, כונן SSD 512GB. מכשיר עבודה אמין וארוך טווח.</p>
             <div class="price">₪2,600</div>
@@ -613,7 +725,7 @@
             <a onclick="openModal('דל לטיטיוד 15', 2600)" style="cursor: pointer;">✅ להזמנה כעת</a>
         </div>
         <div class="product-card" data-company="dell" data-price="2200" data-aos="fade-up" data-aos-delay="200">
-            <img src="https://www.razcomputers.co.il/wp-content/uploads/2020/03/%D7%9E%D7%97%D7%A9%D7%91-%D7%A0%D7%99%D7%99%D7%93-ASUS-412F-%D7%90%D7%A1%D7%95%D7%A1-scaled.jpg" alt="מחשב נייד דל Pro">
+            <img src="https://d3m9l0v76dty0.cloudfront.net/system/photos/13203589/large/85c127a075c73b1399031895171cc6a8.png" alt="מחשב נייד דל Pro">
             <h3>דל וסטרו 14</h3>
             <p>מעבד I3 בסיסי, מסך 14 אינץ', SSD 256GB. פתרון משתלם ללימודים ושימוש בסיסי.</p>
             <div class="price">₪2,200</div>
@@ -623,7 +735,7 @@
 
         <div class="product-title group-lenovo" data-aos="fade-up">לנובו (Lenovo)</div>
         <div class="product-card" data-company="lenovo" data-price="2800" data-aos="fade-up">
-            <img src="https://michlol.co.il/wp-content/uploads/25050336.jpg" alt="מחשב נייד לנובו Z50">
+            <img src="https://www.doogee.co.il/pub/116227/coreboox-pro/corebook_pro2__2_.jpg?quality=65&width=&height=&mode=max" alt="מחשב נייד לנובו Z50">
             <h3>לנובו ThinkPad E14</h3>
             <p>מעבד I5, מסך 14 אינץ', SSD 512GB. מכשיר עבודה אולטימטיבי עם מקלדת מעולה.</p>
             <div class="price">₪2,800</div>
@@ -631,7 +743,7 @@
             <a onclick="openModal('לנובו ThinkPad E14', 2800)" style="cursor: pointer;">✅ להזמנה כעת</a>
         </div>
         <div class="product-card" data-company="lenovo" data-price="1800" data-aos="fade-up" data-aos-delay="100">
-            <img src="https://images.pclogic.co.il/media/catalog/product/cache/1/image/700x700/9df78eab33525d08d6e5fb8d27136e95/2/0/20t8002wiv_1.jpg" alt="מחשב נייד לנובו IdeaPad">
+            <img src="https://psale.co.il/wp-content/uploads/2022/08/02-700x700-1.jpg" alt="מחשב נייד לנובו IdeaPad">
             <h3>לנובו IdeaPad 3</h3>
             <p>מעבד R3, מסך 15.6 אינץ', SSD 256GB. בסיסי, אמין, במחיר נגיש במיוחד.</p>
             <div class="price">₪1,800</div>
@@ -639,7 +751,7 @@
             <a onclick="openModal('לנובו IdeaPad 3', 1800)" style="cursor: pointer;">✅ להזמנה כעת</a>
         </div>
         <div class="product-card" data-company="lenovo" data-price="3100" data-aos="fade-up" data-aos-delay="200">
-            <img src="https://cdn.getprice.co.il/products/26330404.jpg" alt="מחשב נייד לנובו Yoga">
+            <img src="https://www.cdsoft.co.il/img/p/1/2/3/2/3/3/123233-large_default.jpg" alt="מחשב נייד לנובו Yoga">
             <h3>לנובו יוגה 7</h3>
             <p>מעבד I5, מסך מגע 14 אינץ' מתהפך, זיכרון 16GB. מחשב 2 ב-1 לגמישות מרבית.</p>
             <div class="price">₪3,100</div>
@@ -649,7 +761,7 @@
 
         <div class="product-title group-asus" data-aos="fade-up">אסוס (ASUS) </div>
         <div class="product-card" data-company="asus" data-price="2900" data-aos="fade-up">
-            <img src="https://www.cdsoft.co.il/img/p/1/2/6/4/9/4/126494-thickbox_default.jpg" alt="מחשב נייד אסוס V43">
+            <img src="https://d3m9l0v76dty0.cloudfront.net/system/photos/13203589/large/85c127a075c73b1399031895171cc6a8.png" alt="מחשב נייד אסוס V43">
             <h3>אסוס ויוובוק 15</h3>
             <p>מעבד I5 עוצמתי, מסך 15.6 אינץ' פול HD, כונן SSD 512GB. מתאים לשימוש מגוון.</p>
             <div class="price">₪2,900</div>
@@ -657,7 +769,7 @@
             <a onclick="openModal('אסוס ויוובוק 15', 2900)" style="cursor: pointer;">✅ להזמנה כעת</a>
         </div>
         <div class="product-card" data-company="asus" data-price="3900" data-aos="fade-up" data-aos-delay="100">
-            <img src="https://m.media-amazon.com/images/I/718y9+rT-iL._AC_UF894,1000_QL80_.jpg" alt="מחשב נייד אסוס ZenBook">
+            <img src="https://www.payngo.co.il/cdn-cgi/image/format=auto,metadata=none,quality=90/media/New-Icons/Category-icons/HP_Spectre.png" alt="מחשב נייד אסוס ZenBook">
             <h3>אסוס זנבוק 14</h3>
             <p>מעבד I7 דור אחרון, גוף מתכתי, דק במיוחד. פתרון יוקרתי לניידות מלאה.</p>
             <div class="price">₪3,900</div>
@@ -665,7 +777,7 @@
             <a onclick="openModal('אסוס זנבוק 14', 3900)" style="cursor: pointer;">✅ להזמנה כעת</a>
         </div>
         <div class="product-card" data-company="asus" data-price="2100" data-aos="fade-up" data-aos-delay="200">
-            <img src="https://ksp.co.il/shop/items/516/87247.jpg" alt="מחשב נייד אסוס קרומבוק">
+            <img src="https://www.doogee.co.il/pub/116227/coreboox-pro/corebook_pro2__2_.jpg?quality=65&width=&height=&mode=max" alt="מחשב נייד אסוס קרומבוק">
             <h3>אסוס קרומבוק C2</h3>
             <p>מערכת הפעלה קלה, מסך 11.6 אינץ'. מתאים לילדים ולשימוש בסיסי מאוד ברשת.</p>
             <div class="price">₪2,100</div>
@@ -718,6 +830,14 @@
     </div>
 </div>
 
+<div id="articleModal" class="modal">
+    <div class="modal-content article-modal">
+        <span class="close-button" onclick="closeModal('articleModal')">×</span>
+        <div id="articleContent">
+            </div>
+    </div>
+</div>
+
 <script>
 // =========================================================================
 // *** הגדרות טופס גוגל ***
@@ -729,6 +849,70 @@ const GENERAL_FORM_EMBED_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdZc1rd
 const PRODUCT_NAME_ENTRY_ID = 'entry.1050602991';
 // 3. כתובת ה-Embed של טופס יצירת קשר
 const CONTACT_FORM_EMBED_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfOrZYlBDUdhoezDQ8yhHnYy2IF7uxoeP2vxuH3vO7sqwTBeA/viewform?embedded=true';
+
+// =========================================================================
+// *** תוכן המאמרים (עבור פונקציית openArticle) - חדש ***
+// =========================================================================
+
+const articlesContent = {
+    'damage': {
+        title: '5 הרגלים שיפגעו במחשב הנייד שלכם - ואיך למנוע אותם 💧',
+        body: `
+            <p><strong>1. חסימת פתחי האוורור:</strong> המחשב הנייד שלכם פולט חום. כאשר אתם מניחים אותו על שמיכה, כרית, או על הבטן, אתם חוסמים את פתחי האוורור הקטנים בתחתית. חסימה זו גורמת להתחממות יתר, האטת המעבד ופגיעה ארוכת טווח ברכיבים.
+            <br><strong>הפתרון:</strong> השתמשו תמיד במשטח קשיח וישר (שולחן, משטח קירור ייעודי) כדי להבטיח זרימת אוויר חופשית.</p>
+            
+            <p><strong>2. טעינה קבועה ל-100%:</strong> אם אתם משתמשים במחשב נייד רוב היום כמחשב שולחני, והוא תמיד מחובר לחשמל, סוללת הליתיום נשחקת מהר יותר.
+            <br><strong>הפתרון:</strong> נתקו את המטען כאשר הסוללה מגיעה ל-80% וחברו אותו שוב כאשר היא יורדת ל-20-30%. שימוש במצבי טעינה חכמים במידה והמחשב תומך בהם.</p>
+            
+            <p><strong>3. העברת המחשב כשהוא פועל:</strong> נענוע או טלטול של מחשב בזמן שהוא עדיין מפעיל תוכנות או כותב לדיסק (במיוחד אם יש לו כונן מכני - HDD) עלול לגרום ל-Data Corruption ואף לנזק פיזי לכונן.
+            <br><strong>הפתרון:</strong> כבו את המחשב או העבירו אותו למצב 'שינה' (Sleep) לפני שאתם מעבירים אותו למקום אחר או מכניסים אותו לתיק.</p>
+
+            <p><strong>4. אכילה ושתייה ליד המחשב:</strong> כוס קפה שנשפכת על המקלדת או פירורים שנכנסים מתחת למקשים הם המתכון הבטוח לביקור במעבדה.
+            <br><strong>הפתרון:</strong> שמרו על מרחק בטיחות בין המזון והשתייה למחשב. במידת הצורך, השתמשו במגן מקלדת סיליקון.</p>
+
+            <p><strong>5. כיבוי בכוח:</strong> כיבוי המחשב על ידי לחיצה ממושכת על כפתור ההדלקה (מלבד מקרי חירום) עלול לפגוע במערכת הקבצים ולגרום לתקלות תוכנה.
+            <br><strong>הפתרון:</strong> השתמשו תמיד באפשרות 'כיבוי' (Shut Down) דרך תפריט 'התחל' על מנת לאפשר למערכת לסגור קבצים ותוכנות בצורה מסודרת.</p>
+        `
+    },
+    'viruses': {
+        title: 'וירוסים ונוזקות: 3 דרכים להישאר מוגנים ברשת 🛡️',
+        body: `
+            <p><strong>1. אנטי-וירוס מעודכן (Antivirus):</strong> תוכנת אנטי-וירוס איכותית היא קו ההגנה הראשון שלכם. ודאו שהיא מופעלת, מעודכנת באופן אוטומטי, ומבצעת סריקות תקופתיות. גם Windows Defender המובנה במערכות Windows חדשות מספק הגנה טובה, אך יש לוודא שהוא פעיל.</p>
+            
+            <p><strong>2. היזהרו מלינקים וקבצים חשודים:</strong> נוזקות רבות מופצות דרך מיילים (Phishing) או אתרים מתחזים. אם קיבלתם מייל מחברות שאינן מוכרות, או קישור שמבטיח כסף קל - הימנעו מללחוץ או לפתוח קבצים מצורפים. אם אינכם בטוחים, גשו לאתר החברה באופן ישיר במקום ללחוץ על הקישור במייל.</p>
+            
+            <p><strong>3. גיבוי קבוע (Backup):</strong> הגיבוי הוא לא הגנה מפני וירוסים, אבל הוא ההצלה שלכם במקרה של מתקפת כופרה (Ransomware), שנועלת את הקבצים שלכם. אם יש לכם גיבוי חיצוני עדכני, תוכלו לפרמט את המחשב ולשחזר את כל המידע שלכם ללא תשלום כופר. הקפידו לגבות את המידע החשוב שלכם על בסיס שבועי או חודשי.</p>
+        `
+    },
+    'speed': {
+        title: 'המחשב איטי? 4 פעולות פשוטות להאצת המחשב הביתי 🚀',
+        body: `
+            <p><strong>1. נקו את סייר הקבצים:</strong> קבצים זמניים, קבצי אינטרנט ישנים וקבצים בסל המיחזור תופסים מקום ומאיטים את המערכת. השתמשו בכלי ניקוי הדיסק המובנה של Windows או תוכנות צד שלישי (בזהירות) כדי לנקות שאריות מיותרות.</p>
+            
+            <p><strong>2. בטלו הפעלת תוכנות אוטומטית:</strong> תוכנות רבות (כגון סקייפ, ספוטיפיי, וואטסאפ למחשב) מוגדרות להיפתח אוטומטית עם הפעלת המחשב, מה שמאט משמעותית את זמן עליית המערכת ומעמיס על זיכרון ה-RAM.
+            <br><strong>איך עושים זאת?</strong> היכנסו ל'מנהל המשימות' (Task Manager) -> לשונית 'הפעלה' (Startup) ובטלו תוכנות שאינן נחוצות מיידית.</p>
+            
+            <p><strong>3. עדכנו מנהלי התקנים (Drivers):</strong> דרייברים ישנים או פגומים עלולים לגרום לקריסות ולהאטות בלתי מוסברות. ודאו שמנהלי ההתקנים של כרטיס המסך, השבבים והרכיבים המרכזיים מעודכנים על ידי בדיקה באתרי היצרנים (Dell, HP, Lenovo).</p>
+
+            <p><strong>4. ודאו שטח פנוי בכונן ה-SSD:</strong> כונני SSD (הכוננים המהירים יותר הנפוצים כיום) צריכים שטח פנוי מסוים כדי לתפקד ביעילות. אם הכונן שלכם מלא ב-90% ומעלה, המחשב יתחיל לפעול לאט יותר. מחקו קבצים גדולים או העבירו אותם לכונן חיצוני.</p>
+        `
+    },
+    'battery': {
+        title: 'כך תשמרו על חיי הסוללה של המחשב הנייד לאורך זמן 🔋',
+        body: `
+            <p><strong>האמת על חיבור קבוע לחשמל:</strong> בעבר, השארת המחשב מחובר תמיד גרמה לבלאי מהיר של הסוללה. כיום, מרבית המחשבים הניידים המודרניים (משנת 2015 ואילך) כוללים מעגלי הגנה חכמים המפסיקים את הטעינה כאשר הסוללה מגיעה ל-100%, ומפעילים אותה מחדש רק כשהיא יורדת מתחת לסף מסוים (לרוב 95%).
+            <br><strong>אבל...:</strong> הטמפרטורה היא האויב הגדול ביותר של סוללות ליתיום. עבודה ממושכת כשהמחשב מחובר ומתחמם עלולה עדיין לקצר את חייה. אם אפשר, השאירו אותו בטמפרטורת החדר.</p>
+
+            <p><strong>המלצה כללית:</strong>
+            <ul>
+                <li>אם המחשב משמש בעיקר כמחשב נייח, נסו להשתמש בתוכנות ניהול הסוללה של היצרן (כגון 'Lenovo Vantage' או 'MyHP') המאפשרות הגבלת טעינה ל-60% או 80%, מה שמאריך משמעותית את חיי הסוללה.</li>
+                <li>בצעו 'מחזור פריקה-טעינה' פעם בחודש: פרקו את הסוללה עד כ-10-15% וטענו אותה מחדש ל-100% כדי לכייל את המחשב מחדש.</li>
+                <li>הנמיכו את בהירות המסך: מסך בהיר הוא זולל הסוללה הגדול ביותר. הפחתו את הבהירות למינימום הנוח לעבודה.</li>
+            </ul>
+            </p>
+        `
+    }
+};
 
 // =========================================================================
 
@@ -769,6 +953,24 @@ function openModal(productName, productPrice) {
     }
 }
 
+// פונקציה חדשה: פתיחת חלון קופץ עבור מאמרים
+function openArticle(articleId) {
+    const modal = document.getElementById('articleModal');
+    const contentDiv = document.getElementById('articleContent');
+    const article = articlesContent[articleId];
+
+    if (!article) return;
+
+    contentDiv.innerHTML = `<h3>${article.title}</h3>${article.body}`;
+    modal.style.display = 'block';
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            closeModal('articleModal');
+        }
+    }
+}
+
 // פונקציה: פתיחת חלון קופץ עבור יצירת קשר (טלפון, שעות, מיקום, טופס)
 function openContactModal(type) {
     const modal = document.getElementById('contactModal');
@@ -789,7 +991,7 @@ function openContactModal(type) {
             break;
         case 'phone':
             title = 'מספר טלפון 📞';
-            content = `<p><a href="tel:0527685490" dir="ltr">052-7685490</a></p><p>מענה בשעות הפעילות.</p>`;
+            content = `<p><a href="tel:0527685490" dir="ltr">052-7685490</a></p><p>מומלץ לשלוח הודעה מראש.</p>`;
             break;
         case 'hours':
             title = 'שעות פעילות החנות ⏰';
@@ -876,17 +1078,6 @@ function filterProducts() {
             card.style.display = 'none';
         }
     });
-
-    // הסתרת הכותרות בעת סינון (מוטפל ב-CSS בעזרת is-filtering, אבל נשאיר כאן גיבוי או אם נרצה לשנות בהמשך)
-    /*
-    productTitles.forEach(title => {
-        if (isFiltering) {
-            title.style.display = 'none';
-        } else {
-            title.style.display = 'block';
-        }
-    });
-    */
 
     if (foundProducts === 0) {
         noProductsMessage.style.display = 'block';
