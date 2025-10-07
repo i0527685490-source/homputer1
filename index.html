@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
@@ -647,7 +645,16 @@
             <h3>כך תשמרו על חיי הסוללה של המחשב הנייד לאורך זמן 🔋</h3>
             <p>האם כדאי להשאיר את המטען מחובר תמיד? כל המיתוסים והאמת.</p>
         </div>
-    </div>
+        
+        <div class="article-button" onclick="openArticle('backup')" data-aos="fade-up" data-aos-delay="400" data-aos-anchor-placement="top-bottom">
+            <h3>גיבוי בענן לעומת גיבוי חיצוני: מה ההבדל ומה עדיף לבית העסק? ☁️</h3>
+            <p>השוואה בין פתרונות גיבוי שונים וכיצד לבחור את האפשרות הבטוחה ביותר למידע שלכם.</p>
+        </div>
+        <div class="article-button" onclick="openArticle('buying')" data-aos="fade-up" data-aos-delay="500" data-aos-anchor-placement="top-bottom">
+            <h3>כיצד לבחור את המחשב הנייד הנכון: 3 שאלות שחייבים לשאול לפני הקנייה 💡</h3>
+            <p>מדריך קצר לבחירת מעבד, זיכרון (RAM) וגודל מסך המתאימים לצרכים שלכם.</p>
+        </div>
+        </div>
 </section>
 
 <section id="repair">
@@ -858,7 +865,7 @@ const PRODUCT_NAME_ENTRY_ID = 'entry.1050602991';
 const CONTACT_FORM_EMBED_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfOrZYlBDUdhoezDQ8yhHnYy2IF7uxoeP2vxuH3vO7sqwTBeA/viewform?embedded=true';
 
 // =========================================================================
-// *** תוכן המאמרים (עבור פונקציית openArticle) - חדש ***
+// *** תוכן המאמרים (עבור פונקציית openArticle) - חדש - נוספו 2 מאמרים ***
 // =========================================================================
 
 const articlesContent = {
@@ -918,7 +925,52 @@ const articlesContent = {
             </ul>
             </p>
         `
+    },
+    // *** מאמרים חדשים שנוספו ***
+    'backup': {
+        title: 'גיבוי בענן לעומת גיבוי חיצוני: מה ההבדל ומה עדיף לבית העסק? ☁️',
+        body: `
+            <p><strong>גיבוי חיצוני (כונן נייד):</strong>
+            <ul>
+                <li><strong>יתרונות:</strong> מהירות גיבוי ושחזור גבוהה, שליטה מלאה על המידע, עלות חד-פעמית.</li>
+                <li><strong>חסרונות:</strong> רגישות לנזק פיזי (שריפה, הצפה), דורש ניתוק ואחסון פיזי מחוץ למחשב כדי למנוע הידבקות בנוזקות (Ransomware), סכנת אובדן או גניבה.</li>
+            </ul></p>
+            
+            <p><strong>גיבוי ענן (OneDrive, Google Drive, Backblaze):</strong>
+            <ul>
+                <li><strong>יתרונות:</strong> הגנה מוחלטת מפני נזק פיזי וגניבה, גישה למידע מכל מקום בעולם, גיבוי אוטומטי ותמיכה בשחזור גרסאות קודמות (מניעת נזקי כופרה).</li>
+                <li><strong>חסרונות:</strong> דורש חיבור יציב לאינטרנט, עלות חודשית/שנתית (בד"כ לפי נפח), מהירות גיבוי ראשונית איטית.</li>
+            </ul></p>
+
+            <p><strong>המלצה:</strong> לעסקים או למשתמשים עם מידע קריטי, מומלץ ליישם את <strong>'כלל 3-2-1'</strong>: 3 עותקים של המידע, ב-2 סוגי מדיה שונים (כונן פנימי וענן), ו-1 מהם מאוחסן במיקום מחוץ לאתר (למשל, בענן).</p>
+        `
+    },
+    'buying': {
+        title: 'כיצד לבחור את המחשב הנייד הנכון: 3 שאלות שחייבים לשאול לפני הקנייה 💡',
+        body: `
+            <p><strong>1. מהי רמת השימוש והצרכים? (מעבד - CPU)</strong>
+            <ul>
+                <li><strong>שימוש בסיסי (גלישה, מיילים, לימודים):</strong> מעבדי Intel Core i3 או AMD Ryzen 3/5, מספיקים בהחלט.</li>
+                <li><strong>שימוש רב-תכליתי (זום, עבודה משרדית, מולטיטאסקינג):</strong> מעבדי Intel Core i5 או AMD Ryzen 5 מומלצים לאיזון בין מחיר לביצועים.</li>
+                <li><strong>שימוש מקצועי (גרפיקה, עריכת וידאו):</strong> יש לבחור מעבדי Intel Core i7 או AMD Ryzen 7 ומעלה, ובדגש על כרטיס גרפי נפרד.</li>
+            </ul></p>
+            
+            <p><strong>2. כמה זיכרון (RAM) נחוץ?</strong>
+            <ul>
+                <li><strong>8GB:</strong> המינימום ההכרחי כיום. מתאים לגלישה ושימוש בסיסי.</li>
+                <li><strong>16GB:</strong> ההמלצה הגורפת שלנו. זהו ה'מקום הנוסף' שיבטיח שהמחשב לא יאט כאשר פתוחים עשרות חלונות דפדפן ותוכנות שונות במקביל.</li>
+                <li><strong>32GB ומעלה:</strong> רק למקצוענים (מתכנתים, גרפיקאים כבדים).</li>
+            </ul></p>
+            
+            <p><strong>3. מהו גודל המסך המועדף? (ניידות מול נוחות)</strong>
+            <ul>
+                <li><strong>13.3-14 אינץ':</strong> ניידות מקסימלית ומשקל קל. אידיאלי לנסיעות ולמי שנושא את המחשב בתיק כל יום.</li>
+                <li><strong>15.6 אינץ':</strong> הגודל הסטנדרטי והנפוץ ביותר. האיזון המושלם בין נוחות עבודה לניידות סבירה.</li>
+                <li><strong>17 אינץ':</strong> נוחות מקסימלית (מסך גדול ומקלדת מלאה), אך ניידות נמוכה יחסית. מתאים כחלופה למחשב שולחני.</li>
+            </ul></p>
+        `
     }
+    // *** סוף מאמרים חדשים שנוספו ***
 };
 
 // =========================================================================
