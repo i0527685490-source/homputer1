@@ -675,10 +675,11 @@
                 <label for="company-filter">סנן לפי חברה:</label>
                 <select id="company-filter" onchange="filterProducts()">
                     <option value="all">כל החברות</option>
+                    <option value="gigabyte">Gigabyte</option>
+                    <option value="lenovo">Lenovo</option>
+                    <option value="asus">Asus</option>
+                    <option value="dell">Dell</option>
                     <option value="hp">HP</option>
-                    <option value="dell">דל (Dell)</option>
-                    <option value="lenovo">לנובו (Lenovo)</option>
-                    <option value="asus">אסוס (ASUS)</option>
                 </select>
             </div>
             
@@ -693,112 +694,6 @@
         </div>
 
         <div class="products-grid">
-            <div class="product-title group-hp" data-company="hp" data-aos="fade-up">HP</div>
-            <div class="product-card" data-company="hp" data-price="4200" data-aos="fade-up" data-aos-delay="0" data-aos-anchor-placement="top-bottom">
-                <img src="https://www.payngo.co.il/cdn-cgi/image/format=auto,metadata=none,quality=90/media/New-Icons/Category-icons/HP_Spectre.png" alt="מחשב HP Spectre">
-                <h3>HP ספקטר X360</h3>
-                <p>מעבד I7 עוצמתי (דגם דק), מסך מגע 13.3 אינץ' 4K. מחשב פרימיום נייד במיוחד.</p>
-                <div class="price">₪4,200</div>
-                <hr class="price-separator">
-                <a onclick="openModal('HP ספקטר X360', 4200)" style="cursor: pointer;">להזמנה כעת</a>
-            </div>
-            <div class="product-card" data-company="hp" data-price="2450" data-aos="fade-up" data-aos-delay="100" data-aos-anchor-placement="top-bottom">
-                <img src="https://psale.coil/wp-content/uploads/2022/08/02-700x700-1.jpg" alt="מחשב HP Pavilion">
-                <h3>HP פביליון 15</h3>
-                <p>מעבד R5, מסך 15.6 אינץ' HD, זיכרון 8GB. פתרון משתלם לשימוש יומיומי.</p>
-                <div class="price">₪2,450</div>
-                <hr class="price-separator">
-                <a onclick="openModal('HP פביליון 15', 2450)" style="cursor: pointer;">להזמנה כעת</a>
-            </div>
-            <div class="product-card" data-company="hp" data-price="3600" data-aos="fade-up" data-aos-delay="200" data-aos-anchor-placement="top-bottom">
-                <img src="https://www.doogee.co.il/pub/116227/coreboox-pro/corebook_pro2__2_.jpg?quality=65&width=&height=&mode=max" alt="מחשב HP Envy">
-                <h3>HP אנווי 14</h3>
-                <p>מעבד I5 דור 11, זיכרון 16GB, מסך 14 אינץ'. מתאים לעבודה גרפית ועיצוב קל.</p>
-                <div class="price">₪3,600</div>
-                <hr class="price-separator">
-                <a onclick="openModal('HP אנווי 14', 3600)" style="cursor: pointer;">להזמנה כעת</a>
-            </div>
-
-
-            <div class="product-title group-dell" data-company="dell" data-aos="fade-up">דל (Dell)</div>
-            <div class="product-card" data-company="dell" data-price="3400" data-aos="fade-up" data-aos-delay="0" data-aos-anchor-placement="top-bottom">
-                <img src="https://www.cdsoft.co.il/img/p/1/2/3/2/3/3/123233-large_default.jpg" alt="מחשב נייד דל X12">
-                <h3>דל XPS 13</h3>
-                <p>מעבד I7 דור אחרון, 13.4 אינץ' אינפיניטי אדג'. מחשב הדגל של Dell, קומפקטי ומרהיב.</p>
-                <div class="price">₪3,400</div>
-                <hr class="price-separator">
-                <a onclick="openModal('דל XPS 13', 3400)" style="cursor: pointer;">להזמנה כעת</a>
-            </div>
-            <div class="product-card" data-company="dell" data-price="2600" data-aos="fade-up" data-aos-delay="100" data-aos-anchor-placement="top-bottom">
-                <img src="https://www.payngo.co.il/cdn-cgi/image/format=auto,metadata=none,quality=90/media/New-Icons/Category-icons/HP_Spectre.png" alt="מחשב נייד דל Y54">
-                <h3>דל לטיטיוד 15</h3>
-                <p>מעבד R5, מסך 15.6 אינץ' HD, כונן SSD 512GB. מכשיר עבודה אמין וארוך טווח.</p>
-                <div class="price">₪2,600</div>
-                <hr class="price-separator">
-                <a onclick="openModal('דל לטיטיוד 15', 2600)" style="cursor: pointer;">להזמנה כעת</a>
-            </div>
-            <div class="product-card" data-company="dell" data-price="2200" data-aos="fade-up" data-aos-delay="200" data-aos-anchor-placement="top-bottom">
-                <img src="https://d3m9l0v76dty0.cloudfront.net/system/photos/13203589/large/85c127a075c73b1399031895171cc6a8.png" alt="מחשב נייד דל Pro">
-                <h3>דל וסטרו 14</h3>
-                <p>מעבד I3 בסיסי, מסך 14 אינץ', SSD 256GB. פתרון משתלם ללימודים ושימוש בסיסי.</p>
-                <div class="price">₪2,200</div>
-                <hr class="price-separator">
-                <a onclick="openModal('דל וסטרו 14', 2200)" style="cursor: pointer;">להזמנה כעת</a>
-            </div>
-
-            <div class="product-title group-lenovo" data-company="lenovo" data-aos="fade-up">לנובו (Lenovo)</div>
-            <div class="product-card" data-company="lenovo" data-price="2800" data-aos="fade-up" data-aos-delay="0" data-aos-anchor-placement="top-bottom">
-                <img src="https://www.doogee.co.il/pub/116227/coreboox-pro/corebook_pro2__2_.jpg?quality=65&width=&height=&mode=max" alt="מחשב נייד לנובו Z50">
-                <h3>לנובו ThinkPad E14</h3>
-                <p>מעבד I5, מסך 14 אינץ', SSD 512GB. מכשיר עבודה אולטימטיבי עם מקלדת מעולה.</p>
-                <div class="price">₪2,800</div>
-                <hr class="price-separator">
-                <a onclick="openModal('לנובו ThinkPad E14', 2800)" style="cursor: pointer;">להזמנה כעת</a>
-            </div>
-            <div class="product-card" data-company="lenovo" data-price="1800" data-aos="fade-up" data-aos-delay="100" data-aos-anchor-placement="top-bottom">
-                <img src="https://psale.coil/wp-content/uploads/2022/08/02-700x700-1.jpg" alt="מחשב נייד לנובו IdeaPad">
-                <h3>לנובו IdeaPad 3</h3>
-                <p>מעבד R3, מסך 15.6 אינץ', SSD 256GB. בסיסי, אמין, במחיר נגיש במיוחד.</p>
-                <div class="price">₪1,800</div>
-                <hr class="price-separator">
-                <a onclick="openModal('לנובו IdeaPad 3', 1800)" style="cursor: pointer;">להזמנה כעת</a>
-            </div>
-            <div class="product-card" data-company="lenovo" data-price="3100" data-aos="fade-up" data-aos-delay="200" data-aos-anchor-placement="top-bottom">
-                <img src="https://www.cdsoft.co.il/img/p/1/2/3/2/3/3/123233-large_default.jpg" alt="מחשב נייד לנובו Yoga">
-                <h3>לנובו יוגה 7</h3>
-                <p>מעבד I5, מסך מגע 14 אינץ' מתהפך, זיכרון 16GB. מחשב 2 ב-1 לגמישות מרבית.</p>
-                <div class="price">₪3,100</div>
-                <hr class="price-separator">
-                <a onclick="openModal('לנובו יוגה 7', 3100)" style="cursor: pointer;">להזמנה כעת</a>
-            </div>
-
-            <div class="product-title group-asus" data-company="asus" data-aos="fade-up">אסוס (ASUS) </div>
-            <div class="product-card" data-company="asus" data-price="2900" data-aos="fade-up" data-aos-delay="0" data-aos-anchor-placement="top-bottom">
-                <img src="https://d3m9l0v76dty0.cloudfront.net/system/photos/13203589/large/85c127a075c73b1399031895171cc6a8.png" alt="מחשב נייד אסוס V43">
-                <h3>אסוס ויוובוק 15</h3>
-                <p>מעבד I5 עוצמתי, מסך 15.6 אינץ' פול HD, כונן SSD 512GB. מתאים לשימוש מגוון.</p>
-                <div class="price">₪2,900</div>
-                <hr class="price-separator">
-                <a onclick="openModal('אסוס ויוובוק 15', 2900)" style="cursor: pointer;">להזמנה כעת</a>
-            </div>
-            <div class="product-card" data-company="asus" data-price="3900" data-aos="fade-up" data-aos-delay="100" data-aos-anchor-placement="top-bottom">
-                <img src="https://www.payngo.co.il/cdn-cgi/image/format=auto,metadata=none,quality=90/media/New-Icons/Category-icons/HP_Spectre.png" alt="מחשב נייד אסוס ZenBook">
-                <h3>אסוס זנבוק 14</h3>
-                <p>מעבד I7 דור אחרון, גוף מתכתי, דק במיוחד. פתרון יוקרתי לניידות מלאה.</p>
-                <div class="price">₪3,900</div>
-                <hr class="price-separator">
-                <a onclick="openModal('אסוס זנבוק 14', 3900)" style="cursor: pointer;">להזמנה כעת</a>
-            </div>
-            <div class="product-card" data-company="asus" data-price="2100" data-aos="fade-up" data-aos-delay="200" data-aos-anchor-placement="top-bottom">
-                <img src="https://www.doogee.co.il/pub/116227/coreboox-pro/corebook_pro2__2_.jpg?quality=65&width=&height=&mode=max" alt="מחשב נייד אסוס קרומבוק">
-                <h3>אסוס קרומבוק C2</h3>
-                <p>מערכת הפעלה קלה, מסך 11.6 אינץ'. מתאים לילדים ולשימוש בסיסי מאוד ברשת.</p>
-                <div class="price">₪2,100</div>
-                <hr class="price-separator">
-                <a onclick="openModal('אסוס קרומבוק C2', 2100)" style="cursor: pointer;">להזמנה כעת</a>
-            </div>
-
-
             <div id="no-products-message">
                 אופס! לא נמצאו מחשבים התואמים את המסננים שבחרת. נסו לשנות את אפשרויות הסינון.
             </div>
@@ -851,6 +746,7 @@
             </div>
     </div>
 </div>
+<script src="products.js"></script>
 
 <script>
 // =========================================================================
@@ -974,6 +870,50 @@ const articlesContent = {
 };
 
 // =========================================================================
+
+/**
+ * פונקציה לבנייה ורינדור של כרטיסי המוצרים והכותרות מתוך המערך allProducts.
+ */
+function renderProducts() {
+    // בודק אם המערך allProducts הוגדר על ידי products.js
+    if (typeof allProducts === 'undefined') {
+        console.error("Error: allProducts array is not defined. Ensure products.js is loaded correctly.");
+        return;
+    }
+
+    const productsGrid = document.querySelector('.products-grid');
+    let productsHtml = '';
+    let lastCompany = '';
+
+    allProducts.forEach((product, index) => {
+        // הוספת כותרת חברה אם היא שונה מהקודמת
+        if (product.category && product.category !== lastCompany) {
+            productsHtml += `
+                <div class="product-title group-${product.company}" data-company="${product.company}" data-aos="fade-up">
+                    ${product.category}
+                </div>
+            `;
+            lastCompany = product.category;
+        }
+
+        // בניית כרטיס המוצר
+        productsHtml += `
+            <div class="product-card" data-company="${product.company}" data-price="${product.price}" data-aos="fade-up" data-aos-delay="${(index % 3) * 100}" data-aos-anchor-placement="top-bottom">
+                <img src="${product.imgSrc}" alt="${product.imgAlt}">
+                <h3>${product.name}</h3>
+                <p>${product.description}</p>
+                <div class="price">₪${product.price.toLocaleString('he-IL')}</div>
+                <hr class="price-separator">
+                <a onclick="openModal('${product.name}', ${product.price})" style="cursor: pointer;">להזמנה כעת</a>
+            </div>
+        `;
+    });
+
+    // הכנסת כל ה-HTML שנוצר לפני הודעת "לא נמצאו מוצרים"
+    const noProductsMessage = document.getElementById('no-products-message');
+    productsGrid.insertAdjacentHTML('afterbegin', productsHtml);
+}
+
 
 /**
  * פונקציה להצגת סקשנים וניהול כפתורי הניווט.
@@ -1126,10 +1066,7 @@ function filterProducts() {
     // קביעה האם מתבצע סינון כלשהו
     const isFiltering = (companyFilter !== 'all' || minPriceInput !== '' || maxPriceInput !== '');
 
-    productsGrid.classList.toggle('is-filtering', isFiltering); // הוספת/הסרת מחלקה ל-Grid
-
-    // **בזמן סינון, כל כותרות החברה מוסתרות על ידי ה-CSS**.
-    // אם אין סינון, צריך להראות רק את כרטיסי החברות המתאימים ל-companyFilter
+    productsGrid.classList.toggle('is-filtering', isFiltering); // הוספת/הסרת מחלקה ל-Grid (מסתיר כותרות דרך CSS)
 
     productCards.forEach(card => {
         const company = card.getAttribute('data-company');
@@ -1146,24 +1083,26 @@ function filterProducts() {
         }
     });
 
-    // במידה ואין סינון מחיר והסינון הוא על כל החברות, יש להבטיח שכותרות החברות יוצגו.
-    if (!isFiltering && companyFilter === 'all') {
-         productTitles.forEach(title => {
-             title.style.display = 'block';
-         });
-    } else {
-        // אם יש סינון, ה-CSS כבר מסתיר אותן.
+    // ניהול כותרות החברה באופן ידני כדי לכסות את המקרה של סינון חברה בלבד:
+    if (companyFilter !== 'all' && minPriceInput === '' && maxPriceInput === '') {
+        // סינון חברה בלבד - מציג רק את הכותרת הרלוונטית
         productTitles.forEach(title => {
-             title.style.display = 'none';
-         });
-    }
-    
-    // אם בוחרים חברה ספציפית אבל אין סינון מחיר, מראים רק את הכותרת של החברה הנבחרת.
-    if (!isFiltering && companyFilter !== 'all') {
-         const specificTitle = document.querySelector(`.product-title[data-company="${companyFilter}"]`);
-         if (specificTitle) {
-            specificTitle.style.display = 'block';
-         }
+            if (title.getAttribute('data-company') === companyFilter) {
+                title.style.display = 'block';
+            } else {
+                title.style.display = 'none';
+            }
+        });
+    } else if (companyFilter === 'all' && minPriceInput === '' && maxPriceInput === '') {
+        // אין סינון כלל - מציג את כל הכותרות
+        productTitles.forEach(title => {
+            title.style.display = 'block';
+        });
+    } else {
+        // סינון מחיר פעיל (עם או בלי חברה) - הסתרת כל הכותרות (כפי שמוגדר ב-CSS ל-.is-filtering)
+        productTitles.forEach(title => {
+            title.style.display = 'none';
+        });
     }
 
 
@@ -1203,6 +1142,11 @@ function initializePage() {
     // הצגת הסקשן הרלוונטי
     showSection(activeSectionId, activeLinkElement);
     
+    // *** שינוי: רינדור המוצרים מהקובץ החיצוני לפני הפעלת הסינון
+    if (typeof allProducts !== 'undefined') {
+        renderProducts();
+    }
+
     // ייזום סינון המוצרים עם המסננים הדיפולטיביים
     filterProducts();
 }
@@ -1211,7 +1155,33 @@ function initializePage() {
 document.addEventListener('DOMContentLoaded', initializePage);
 </script>
 
+
+
+
+
+
+
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+  (function (w, d, s, o, f, js, fjs) {
+    w["botsonic_widget"] = o;
+    w[o] =
+      w[o] ||
+      function () {
+        (w[o].q = w[o].q || []).push(arguments);
+      };
+    (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
+    js.id = o;
+    js.src = f;
+    js.async = 1;
+    fjs.parentNode.insertBefore(js, fjs);
+  })(window, document, "script", "Botsonic", "https://widget.botsonic.com/CDN/botsonic.min.js");
+  Botsonic("init", {
+    serviceBaseUrl: "https://api-bot.writesonic.com",
+    token: "410d83eb-fbe8-4469-b859-1ed5a13481cf",
+  });
+</script>
 
 </body>
 </html>
