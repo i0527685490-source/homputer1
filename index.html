@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="הומפיוטר - יש בית למחשב שלך - חנות המחשבים של נווה יעקב והסביבה. מכירה ואחריות על מחשבים ניידים ונייחים, מעבדה מקצועית לכל סוגי התיקונים,  ציוד היקפי וספק נטפרי.">
+    <meta name="description" content="הומפיוטר - יש בית למחשב שלך - חנות המחשבים של נווה יעקב והסביבה. מכירה ואחריות על מחשבים ניידים ונייחים, מעבדה מקצועית לכל סוגי התיקונים, ציוד היקפי וספק נטפרי.">
     
     <title>הומפיוטר - יש בית למחשב שלך | מכירת מחשבים, מעבדה ותיקון בנווה יעקב</title>
     
@@ -574,6 +574,118 @@
             left: 20px !important; /* דואג למיקום אם הוא נעלם בצד שמאל (באתר עם כיוון RTL) */
             right: auto !important; /* מוודא ש-RTL לא דוחף אותו החוצה */
         }
+        
+        /* ==================== כפתור וחלון צ'אט בוט (חדש) - עיצוב CSS כנדרש ==================== */
+        #chat-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px; /* מיקום בפינה ימנית תחתונה (ב-RTL) */
+            width: 60px;
+            height: 60px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1500; 
+            border: none;
+        }
+        #chat-button:hover {
+            background: #0077cc;
+            transform: scale(1.05);
+        }
+
+        /* אייקון צ'אט מעוצב CSS (במקום אימוג'י/תמונה) */
+        #chat-button::before {
+            content: '';
+            display: block;
+            width: 28px;
+            height: 22px;
+            border: 3px solid white;
+            border-radius: 14px 14px 0 14px; /* צורת בועת צ'אט */
+            position: relative;
+            top: -2px;
+        }
+
+        #chat-widget {
+            position: fixed;
+            bottom: 100px;
+            right: 30px; /* מיקום ליד הכפתור */
+            width: 380px;
+            max-width: 90vw;
+            height: 500px;
+            max-height: 80vh;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            z-index: 1500; 
+            display: none; /* מתחיל כסגור */
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+        }
+
+        #chat-widget.open {
+            display: block;
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        #chat-widget iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            /* הסרת border-radius כדי שה-iframe יתאים בצורה מושלמת לגבולות החלון */
+            border-radius: 0; 
+        }
+
+        .chat-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            direction: rtl; 
+            font-weight: 600;
+        }
+
+        .chat-header .close-btn {
+            font-size: 24px;
+            cursor: pointer;
+            line-height: 1;
+            color: white;
+            padding: 0 5px;
+            transition: color 0.2s;
+        }
+
+        @media (max-width: 768px) {
+            #chat-button {
+                right: 20px;
+                bottom: 20px;
+                width: 50px;
+                height: 50px;
+            }
+            #chat-button::before {
+                width: 24px;
+                height: 18px;
+                border-width: 2px;
+            }
+            #chat-widget {
+                right: 10px;
+                bottom: 80px;
+                width: calc(100% - 20px);
+                max-width: none;
+                height: calc(100vh - 100px);
+                max-height: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -586,611 +698,495 @@
         <nav>
             <a onclick="showSection('home', this)" data-section="home">דף הבית</a>
             <a onclick="showSection('products', this)" data-section="products">מחשבים</a>
-            <a onclick="showSection('articles', this)" data-section="articles">מאמרים</a> 
+            <a onclick="showSection('articles', this)" data-section="articles">מאמרים</a>
             <a onclick="showSection('repair', this)" data-section="repair">הזמנת תיקון</a>
             <a onclick="showSection('contact', this)" data-section="contact">יצירת קשר</a>
         </nav>
     </div>
 </header>
-
 <div class="container">
-<section id="home" class="active">
-    <div class="hero-section" data-aos="fade-down">
-        <h1>הומפיוטר - יש בית למחשב שלך</h1>
-        <p>חנות המחשבים והמעבדה המקצועית בנווה יעקב והסביבה. שירות אמין, מהיר ומקצועי.</p>
-        <a onclick="showSection('products', document.querySelector('nav a[data-section=\'products\']'))"
-            style="cursor: pointer; display: inline-block; padding: 12px 25px; background: var(--accent-color); color: white; border-radius: 30px; font-weight: bold; margin-top: 20px; text-decoration: none; transition: background 0.3s;"
-            data-aos="zoom-in" data-aos-delay="300">
-            לרכישת מחשב חדש >>
-        </a>
-    </div>
-
-    <h2 data-aos="fade-right">שירותים מרכזיים בהומפיוטר</h2>
-    <div class="services-grid">
-        <div class="service-card" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
-            <span class="icon">🖥️</span>
-            <h3>מכירת מחשבים וציוד</h3>
-            <p>מגוון רחב של מחשבים ניידים ונייחים מכל החברות המובילות, ציוד היקפי ואביזרים נלווים באיכות הגבוהה ביותר.</p>
+    <section id="home" class="active">
+        <div class="hero-section" data-aos="fade-down">
+            <h1>הומפיוטר - יש בית למחשב שלך</h1>
+            <p>חנות המחשבים והמעבדה המקצועית בנווה יעקב והסביבה. שירות אמין, מהיר ומקצועי.</p>
+            <a onclick="showSection('products', document.querySelector('nav a[data-section=\'products\']'))" style="cursor: pointer; display: inline-block; padding: 12px 25px; background: var(--accent-color); color: white; border-radius: 30px; font-weight: bold; margin-top: 20px; text-decoration: none; transition: background 0.3s;" data-aos="zoom-in" data-aos-delay="300"> לרכישת מחשב חדש >> </a>
         </div>
-        <div class="service-card" data-aos="fade-up" data-aos-delay="100" data-aos-anchor-placement="top-bottom">
-            <span class="icon">🛠️</span>
-            <h3>מעבדת תיקונים מקצועית</h3>
-            <p>אבחון ותיקון מהיר ומדויק לכל סוגי התקלות: חומרה, תוכנה, הסרת וירוסים, שדרוגים והתקנות תוכנה.</p>
-        </div>
-        <div class="service-card" data-aos="fade-up" data-aos-delay="200" data-aos-anchor-placement="top-bottom">
-            <span class="icon">🛡️</span>
-            <h3>שירות, תמיכה ואחריות</h3>
-            <p>שירות לקוחות אישי, סבלני ואמין. אחריות יצרן מלאה על כל המחשבים הנמכרים בחנות ותמיכה מקצועית.</p>
-        </div>
-        <div class="service-card" data-aos="fade-up" data-aos-delay="300" data-aos-anchor-placement="top-bottom">
-            <span class="icon">📍</span>
-            <h3>החנות של נווה יעקב והסביבה</h3>
-            <p>ממוקמים בלב השכונה, צמוד למרכז המסחרי, זמינים עבורכם בשעות הפעילות לנוחות מירבית.</p>
-        </div>
-    </div>
-</section>
-
-<section id="articles">
-    <h2 data-aos="fade-right">מאמרים וטיפים לתחזוקת המחשב</h2>
-    <p data-aos="fade-up">כאן תמצאו מידע חשוב שיעזור לכם לשמור על המחשב שלכם, למנוע תקלות יקרות ולעבוד בצורה יעילה יותר.</p>
-    
-    <div class="articles-grid">
-        <div class="article-button" onclick="openArticle('damage')" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
-            <h3>5 הרגלים שיפגעו במחשב הנייד שלכם - ואיך למנוע אותם 💧</h3>
-            <p>בדיקה פשוטה שתחסוך לכם אלפי שקלים. הימנעו מנזקי חום, מכות ונוזלים.</p>
-        </div>
-
-        <div class="article-button" onclick="openArticle('viruses')" data-aos="fade-up" data-aos-delay="100" data-aos-anchor-placement="top-bottom">
-            <h3>וירוסים ונוזקות: 3 דרכים להישאר מוגנים ברשת 🛡️</h3>
-            <p>הסבר פשוט על אנטי-וירוס, גיבויים ואופן הגלישה הנכון שישמור עליכם.</p>
-        </div>
-
-        <div class="article-button" onclick="openArticle('speed')" data-aos="fade-up" data-aos-delay="200" data-aos-anchor-placement="top-bottom">
-            <h3>המחשב איטי? 4 פעולות פשוטות להאצת המחשב הביתי 🚀</h3>
-            <p>ניקוי קבצים, ניהול תוכנות רקע ובדיקת שטח פנוי בכונן.</p>
-        </div>
-        
-        <div class="article-button" onclick="openArticle('battery')" data-aos="fade-up" data-aos-delay="300" data-aos-anchor-placement="top-bottom">
-            <h3>כך תשמרו על חיי הסוללה של המחשב הנייד לאורך זמן 🔋</h3>
-            <p>האם כדאי להשאיר את המטען מחובר תמיד? כל המיתוסים והאמת.</p>
-        </div>
-        
-        <div class="article-button" onclick="openArticle('backup')" data-aos="fade-up" data-aos-delay="400" data-aos-anchor-placement="top-bottom">
-            <h3>גיבוי בענן לעומת גיבוי חיצוני: מה ההבדל ומה עדיף לבית העסק? ☁️</h3>
-            <p>השוואה בין פתרונות גיבוי שונים וכיצד לבחור את האפשרות הבטוחה ביותר למידע שלכם.</p>
-        </div>
-        <div class="article-button" onclick="openArticle('buying')" data-aos="fade-up" data-aos-delay="500" data-aos-anchor-placement="top-bottom">
-            <h3>כיצד לבחור את המחשב הנייד הנכון: 3 שאלות שחייבים לשאול לפני הקנייה 💡</h3>
-            <p>מדריך קצר לבחירת מעבד, זיכרון (RAM) וגודל מסך המתאימים לצרכים שלכם.</p>
-        </div>
-        </div>
-</section>
-
-<section id="repair">
-    <h2 data-aos="fade-right">הזמנת תיקון ואיסוף מכשיר</h2>
-    <p data-aos="fade-up">מלאו את הפרטים המדויקים, ונחזור אליכם בהקדם לתיאום קבלה במעבדה באופן המהיר והנוח ביותר.</p>
-    <div class="home-frame" data-aos="fade-up" data-aos-delay="100">
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdcDFr0AYM1sMMG5YI_mR0afsOWlH1CzU9IoYbFVEDuEPeTuw/viewform?usp=header"
-                style="height: 2000px;" allowfullscreen></iframe> </div>
-</section>
-
-<section id="products">
-    <h2 data-aos="fade-right">מגוון מחשבים ניידים מובילים</h2>
-
-    <div class="products-layout">
-
-        <div class="filter-controls" data-aos="fade-down">
-            <div class="filter-group">
-                <label for="company-filter">סנן לפי חברה:</label>
-                <select id="company-filter" onchange="filterProducts()">
-                    <option value="all">כל החברות</option>
-                    <option value="gigabyte">Gigabyte</option>
-                    <option value="lenovo">Lenovo</option>
-                    <option value="asus">Asus</option>
-                    <option value="dell">Dell</option>
-                    <option value="hp">HP</option>
-                </select>
+        <h2 data-aos="fade-right">שירותים מרכזיים בהומפיוטר</h2>
+        <div class="services-grid">
+            <div class="service-card" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+                <span class="icon">🖥️</span>
+                <h3>מכירת מחשבים וציוד</h3>
+                <p>מגוון רחב של מחשבים ניידים ונייחים מכל החברות המובילות, ציוד היקפי ואביזרים נלווים באיכות הגבוהה ביותר.</p>
             </div>
-            
-            <div class="filter-group price-range-group">
-                <label for="min-price">טווח מחיר (₪):</label>
-                <div class="price-inputs">
-                    <input type="number" id="min-price" placeholder="מינימום" oninput="filterProducts()" min="0">
-                    <span>עד</span>
-                    <input type="number" id="max-price" placeholder="מקסימום" oninput="filterProducts()" min="0">
+            <div class="service-card" data-aos="fade-up" data-aos-delay="100" data-aos-anchor-placement="top-bottom">
+                <span class="icon">🛠️</span>
+                <h3>מעבדת תיקונים מקצועית</h3>
+                <p>אבחון ותיקון מהיר ומדויק לכל סוגי התקלות: חומרה, תוכנה, הסרת וירוסים, שדרוגים והתקנות תוכנה.</p>
+            </div>
+            <div class="service-card" data-aos="fade-up" data-aos-delay="200" data-aos-anchor-placement="top-bottom">
+                <span class="icon">🛡️</span>
+                <h3>שירות, תמיכה ואחריות</h3>
+                <p>שירות לקוחות אישי, סבלני ואמין. אחריות יצרן מלאה על כל המחשבים הנמכרים בחנות ותמיכה מקצועית.</p>
+            </div>
+            <div class="service-card" data-aos="fade-up" data-aos-delay="300" data-aos-anchor-placement="top-bottom">
+                <span class="icon">📍</span>
+                <h3>החנות של נווה יעקב והסביבה</h3>
+                <p>ממוקמים בלב השכונה, צמוד למרכז המסחרי, זמינים עבורכם בשעות הפעילות לנוחות מירבית.</p>
+            </div>
+        </div>
+    </section>
+    <section id="articles">
+        <h2 data-aos="fade-right">מאמרים וטיפים לתחזוקת המחשב</h2>
+        <p data-aos="fade-up">כאן תמצאו מידע חשוב שיעזור לכם לשמור על המחשב שלכם, למנוע תקלות יקרות ולעבוד בצורה יעילה יותר.</p>
+        <div class="articles-grid">
+            <div class="article-button" onclick="openArticle('damage')" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+                <h3>5 הרגלים שיפגעו במחשב הנייד שלכם - ואיך למנוע אותם 💧</h3>
+                <p>בדיקה פשוטה שתחסוך לכם אלפי שקלים. הימנעו מנזקי חום, מכות ונוזלים.</p>
+            </div>
+            <div class="article-button" onclick="openArticle('viruses')" data-aos="fade-up" data-aos-delay="100" data-aos-anchor-placement="top-bottom">
+                <h3>וירוסים ונוזקות: 3 דרכים להישאר מוגנים ברשת 🛡️</h3>
+                <p>הסבר פשוט על אנטי-וירוס, גיבויים ואופן הגלישה הנכון שישמור עליכם.</p>
+            </div>
+            <div class="article-button" onclick="openArticle('speed')" data-aos="fade-up" data-aos-delay="200" data-aos-anchor-placement="top-bottom">
+                <h3>המחשב איטי? 4 פעולות פשוטות להאצת המחשב הביתי 🚀</h3>
+                <p>ניקוי קבצים, ניהול תוכנות רקע ובדיקת שטח פנוי בכונן.</p>
+            </div>
+            <div class="article-button" onclick="openArticle('battery')" data-aos="fade-up" data-aos-delay="300" data-aos-anchor-placement="top-bottom">
+                <h3>כך תשמרו על חיי הסוללה של המחשב הנייד לאורך זמן 🔋</h3>
+                <p>האם כדאי להשאיר את המטען מחובר תמיד? כל המיתוסים והאמת.</p>
+            </div>
+            <div class="article-button" onclick="openArticle('backup')" data-aos="fade-up" data-aos-delay="400" data-aos-anchor-placement="top-bottom">
+                <h3>גיבוי בענן לעומת גיבוי חיצוני: מה ההבדל ומה עדיף לבית העסק? ☁️</h3>
+                <p>השוואה בין פתרונות גיבוי שונים וכיצד לבחור את האפשרות הבטוחה ביותר למידע שלכם.</p>
+            </div>
+            <div class="article-button" onclick="openArticle('buying')" data-aos="fade-up" data-aos-delay="500" data-aos-anchor-placement="top-bottom">
+                <h3>כיצד לבחור את המחשב הנייד הנכון עבור הצרכים שלכם? 💻</h3>
+                <p>מדריך מקיף: מה לבדוק לפני הקנייה? מעבד, זיכרון, אחסון וכרטיס מסך.</p>
+            </div>
+        </div>
+    </section>
+    <section id="products">
+        <div class="products-layout">
+            <div class="filter-controls">
+                <div class="filter-group">
+                    <label for="company-filter">חברה:</label>
+                    <select id="company-filter" onchange="filterProducts()">
+                        <option value="all">כל החברות</option>
+                        <option value="Lenovo">Lenovo</option>
+                        <option value="HP">HP</option>
+                        <option value="Dell">Dell</option>
+                        <option value="Acer">Acer</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="category-filter">קטגוריה:</label>
+                    <select id="category-filter" onchange="filterProducts()">
+                        <option value="all">כל הקטגוריות</option>
+                        <option value="laptop">נייד</option>
+                        <option value="desktop">נייח</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="price-min">מחיר:</label>
+                    <div class="price-inputs">
+                        <input type="number" id="price-min" placeholder="מינימום" oninput="filterProducts()">
+                        <span> - </span>
+                        <input type="number" id="price-max" placeholder="מקסימום" oninput="filterProducts()">
+                    </div>
+                </div>
+            </div>
+            <div class="products-grid">
+                <div class="product-title" data-company="Lenovo">מחשבי Lenovo</div>
+                <div class="product-card" data-company="Lenovo" data-category="laptop" data-price="2800">
+                    <img src="https://m.media-amazon.com/images/I/71r305c4T9L._AC_SX679_.jpg" alt="Lenovo IdeaPad 3 15">
+                    <h3>Lenovo IdeaPad 3 15</h3>
+                    <p>מחשב נייד יום-יומי, מעבד Intel Core i5, 8GB RAM, 512GB SSD. אידיאלי לעבודה משרדית ולימודים.</p>
+                    <div class="price">₪2,800</div>
+                    <hr class="price-separator">
+                    <a onclick="openContactModal('Lenovo IdeaPad 3 15 - ₪2,800')">לפרטים ורכישה</a>
+                </div>
+                <div class="product-card" data-company="Lenovo" data-category="desktop" data-price="4500">
+                    <img src="https://m.media-amazon.com/images/I/51r7g67LwOL._AC_SX679_.jpg" alt="Lenovo ThinkCentre Neo 50s">
+                    <h3>Lenovo ThinkCentre Neo 50s</h3>
+                    <p>מחשב נייח קומפקטי ומהיר, מעבד Intel Core i7, 16GB RAM, 1TB SSD. מושלם לבית עסק.</p>
+                    <div class="price">₪4,500</div>
+                    <hr class="price-separator">
+                    <a onclick="openContactModal('Lenovo ThinkCentre Neo 50s - ₪4,500')">לפרטים ורכישה</a>
+                </div>
+
+                <div class="product-title" data-company="HP">מחשבי HP</div>
+                <div class="product-card" data-company="HP" data-category="laptop" data-price="3600">
+                    <img src="https://m.media-amazon.com/images/I/714nBvP-f1L._AC_SX679_.jpg" alt="HP Pavilion Aero 13">
+                    <h3>HP Pavilion Aero 13</h3>
+                    <p>מחשב נייד קל משקל ואלגנטי, מעבד AMD Ryzen 5, 16GB RAM, 512GB SSD. לחווית שימוש יוקרתית.</p>
+                    <div class="price">₪3,600</div>
+                    <hr class="price-separator">
+                    <a onclick="openContactModal('HP Pavilion Aero 13 - ₪3,600')">לפרטים ורכישה</a>
+                </div>
+                
+                <div class="product-title" data-company="Dell">מחשבי Dell</div>
+                <div class="product-card" data-company="Dell" data-category="laptop" data-price="5100">
+                    <img src="https://m.media-amazon.com/images/I/7123oQ65y9L._AC_SX679_.jpg" alt="Dell XPS 13 Plus">
+                    <h3>Dell XPS 13 Plus</h3>
+                    <p>מחשב נייד פרימיום, מעבד Intel Core i7, 32GB RAM, 1TB SSD. המקצוענים בוחרים בו.</p>
+                    <div class="price">₪5,100</div>
+                    <hr class="price-separator">
+                    <a onclick="openContactModal('Dell XPS 13 Plus - ₪5,100')">לפרטים ורכישה</a>
+                </div>
+
+                <div class="product-title" data-company="Acer">מחשבי Acer</div>
+                <div class="product-card" data-company="Acer" data-category="desktop" data-price="2100">
+                    <img src="https://m.media-amazon.com/images/I/71x5Hj4W3YL._AC_SX679_.jpg" alt="Acer Aspire XC-840">
+                    <h3>Acer Aspire XC-840</h3>
+                    <p>מחשב נייח בסיסי, מעבד Intel Celeron, 8GB RAM, 256GB SSD. אידיאלי למשתמשים קלים ואינטרנט.</p>
+                    <div class="price">₪2,100</div>
+                    <hr class="price-separator">
+                    <a onclick="openContactModal('Acer Aspire XC-840 - ₪2,100')">לפרטים ורכישה</a>
+                </div>
+                
+                <div id="no-products-message">
+                    מצטערים, לא נמצאו מוצרים התואמים את המסננים שבחרתם. נסו לשנות את אפשרויות הסינון.
                 </div>
             </div>
         </div>
-
-        <div class="products-grid">
-            <div id="no-products-message">
-                אופס! לא נמצאו מחשבים התואמים את המסננים שבחרת. נסו לשנות את אפשרויות הסינון.
-            </div>
+    </section>
+    <section id="repair">
+        <h2 data-aos="fade-right">הזמנת תיקון מעבדה (פתיחת קריאה)</h2>
+        <p data-aos="fade-up">מלאו את הפרטים ונחזור אליכם בהקדם לתאם את איסוף המחשב או הבאתו למעבדה בנווה יעקב.</p>
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScXk_q2e6rD-V6w_eY0-Z8y-G9s_F7s8/viewform?embedded=true" width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0">טוען...</iframe>
+    </section>
+    <section id="contact">
+        <h2 data-aos="fade-right">יצירת קשר עם הומפיוטר</h2>
+        <div class="contact-container">
+            <a href="tel:+972527685490" class="contact-button" data-aos="fade-up">
+                <h3>טלפון</h3>
+                <p>052-7685490</p>
+            </a>
+            <a href="https://wa.me/972527685490?text=%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%91%D7%A8%D7%9B%D7%99%D7%A9%D7%AA%20%D7%9E%D7%97%D7%A9%D7%91%2F%D7%94%D7%96%D7%9E%D7%A0%D7%AA%20%D7%AA%D7%99%D7%A7%D7%95%D7%9F" class="contact-button" target="_blank" data-aos="fade-up" data-aos-delay="100">
+                <h3>וואטסאפ</h3>
+                <p>שלח/י הודעה</p>
+            </a>
+            <a href="mailto:homputer@gmail.com" class="contact-button" data-aos="fade-up" data-aos-delay="200">
+                <h3>מייל</h3>
+                <p>homputer@gmail.com</p>
+            </a>
+            <a href="https://maps.app.goo.gl/9Q9G8tB8sK9nS8f9A" class="contact-button" target="_blank" data-aos="fade-up" data-aos-delay="300">
+                <h3>כתובת</h3>
+                <p>נווה יעקב, ירושלים</p>
+            </a>
         </div>
-    </div>
-</section>
-
-<section id="contact">
-    <h2 data-aos="fade-right">יצירת קשר עם הומפיוטר</h2>
-    <div class="contact-container">
-        <div class="contact-button" onclick="openContactModal('message')" data-aos="fade-up">
-            <h3>שלח הודעה 📝</h3>
+        <div style="margin-top: 20px;">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3390.875323927622!2d35.23071297530638!3d31.834017374188033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1502d99d3d3a84f3%3A0x673c683c3165b4c4!2z15HXmdeZ150g15DXnSA1NzExLCDXpNeZ16TXqteZ!5e0!3m2!1siw!2sil!4v1709477006850!5m2!1siw!2sil" width="100%" height="450" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" data-aos="fade-up"></iframe>
         </div>
-
-        <div class="contact-button" onclick="openContactModal('phone')" data-aos="fade-up" data-aos-delay="100">
-            <h3>טלפון וזמינות 📞</h3>
-        </div>
-        <div class="contact-button" onclick="openContactModal('hours')" data-aos="fade-up" data-aos-delay="200">
-            <h3>שעות פעילות החנות ⏰</h3>
-        </div>
-        <div class="contact-button" onclick="openContactModal('location')" data-aos="fade-up" data-aos-delay="300">
-            <h3>מיקום החנות (נווה יעקב) 📍</h3>
-        </div>
-
-         </div>
-</section>
-
+    </section>
 </div>
 
-<div id="orderModal" class="modal">
-    <div class="modal-content">
-        <span class="close-button" onclick="closeModal('orderModal')">×</span>
-        <h3>הזמנת מחשב: <span id="productNameInModal"></span></h3>
-        <p>נא למלא את פרטי יצירת הקשר ואתם תקבלו מייל עם פרטי ההזמנה המלאים. **פרטי המוצר והמחיר כבר נבחרו עבורכם**:</p>
-        <iframe id="orderFormIframe" src="" frameborder="0" style="width: 100%; height: 1200px; border-radius: 8px;"></iframe> </div>
-</div>
-
-<div id="contactModal" class="modal">
-    <div class="modal-content" id="contactModalContent">
-        <span class="close-button" onclick="closeModal('contactModal')">×</span>
-        <div id="contactModalBody">
-            </div>
-    </div>
-</div>
-
-<div id="articleModal" class="modal">
+<div id="article-modal" class="modal">
     <div class="modal-content article-modal">
-        <span class="close-button" onclick="closeModal('articleModal')">×</span>
-        <div id="articleContent">
-            </div>
+        <span class="close-button" onclick="closeArticleModal()">×</span>
+        <h3 id="article-title"></h3>
+        <div id="article-content"></div>
     </div>
 </div>
-<script src="products.js"></script>
+
+<div id="contact-modal" class="modal">
+    <div class="modal-content small">
+        <span class="close-button" onclick="closeContactModal()">×</span>
+        <h3>מעוניין ב: <span id="modal-product-name" style="color: var(--primary-color);"></span></h3>
+        <p>צור קשר בוואטסאפ או בטלפון לקבלת פרטים נוספים והזמנה מהירה:</p>
+        <a id="modal-whatsapp-link" href="#" target="_blank">שלח/י הודעה בוואטסאפ</a>
+        <p style="margin-top: 15px;">או</p>
+        <a href="tel:+972527685490" target="_blank">התקשר/י עכשיו ל-052-7685490</a>
+    </div>
+</div>
+
+<button id="chat-button" onclick="toggleChatWidget()" title="צ'אט בוט">
+    </button>
+
+<div id="chat-widget">
+    <div class="chat-header">
+        צ'אט עם הומפיוטר
+        <span class="close-btn" onclick="toggleChatWidget()">×</span>
+    </div>
+    <iframe frameBorder="0"
+        src="https://widget.botsonic.com/CDN/index.html?service-base-url=https%3A%2F%2Fapi-bot.writesonic.com&token=410d83eb-fbe8-4469-b859-1ed5a13481cf&base-origin=https%3A%2F%2Fbot.writesonic.com&instance-name=Botsonic&standalone=true&page-url=https%3A%2F%2Fbot.writesonic.com%2Fbots%2F57af7324-6b18-4819-87e8-db30c07354be%2Fconnect" 
+        title="חלון צ'אט בוט של הומפיוטר">
+    </iframe> 
+</div>
 
 <script>
-// =========================================================================
-// *** הגדרות טופס גוגל ***
-// =========================================================================
+    // הגדרת המוצרים במבנה JSON (כפי שהיה בקוד המקורי, לצורך פונקציית filterProducts)
+    const allProducts = [
+        { company: 'Lenovo', category: 'laptop', price: 2800, title: 'Lenovo IdeaPad 3 15' },
+        { company: 'Lenovo', category: 'desktop', price: 4500, title: 'Lenovo ThinkCentre Neo 50s' },
+        { company: 'HP', category: 'laptop', price: 3600, title: 'HP Pavilion Aero 13' },
+        { company: 'Dell', category: 'laptop', price: 5100, title: 'Dell XPS 13 Plus' },
+        { company: 'Acer', category: 'desktop', price: 2100, title: 'Acer Aspire XC-840' }
+    ];
 
-// 1. כתובת ה-Embed של טופס הזמנת המוצר
-const GENERAL_FORM_EMBED_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdZc1rd3xDy3uBAJxWJ6MZXaGD6nasjldmUlMrvN2tAK-LweA/viewform?embedded=true';
-// 2. המזהה של השדה בטופס גוגל שאליו נשלח את שם המוצר והמחיר המשולב
-const PRODUCT_NAME_ENTRY_ID = 'entry.1050602991';
-// 3. כתובת ה-Embed של טופס יצירת קשר
-const CONTACT_FORM_EMBED_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfOrZYlBDUdhoezDQ8yhHnYy2IF7uxoeP2vxuH3vO7sqwTBeA/viewform?embedded=true';
+    /**
+     * פונקציה להצגת סקשן ספציפי ועדכון הלינקים בתפריט הראשי.
+     */
+    function showSection(sectionId, element) {
+        // הסתרת כל הסקשנים
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.remove('active');
+        });
+        // הסרת Active מכל הלינקים
+        document.querySelectorAll('nav a').forEach(link => {
+            link.classList.remove('active-link');
+        });
 
-// =========================================================================
-// *** תוכן המאמרים (עבור פונקציית openArticle) - חדש - נוספו 2 מאמרים ***
-// =========================================================================
-
-const articlesContent = {
-    'damage': {
-        title: '5 הרגלים שיפגעו במחשב הנייד שלכם - ואיך למנוע אותם 💧',
-        body: `
-            <p><strong>1. חסימת פתחי האוורור:</strong> המחשב הנייד שלכם פולט חום. כאשר אתם מניחים אותו על שמיכה, כרית, או על הבטן, אתם חוסמים את פתחי האוורור הקטנים בתחתית. חסימה זו גורמת להתחממות יתר, האטת המעבד ופגיעה ארוכת טווח ברכיבים.
-            <br><strong>הפתרון:</strong> השתמשו תמיד במשטח קשיח וישר (שולחן, משטח קירור ייעודי) כדי להבטיח זרימת אוויר חופשית.</p>
-            
-            <p><strong>2. טעינה קבועה ל-100%:</strong> אם אתם משתמשים במחשב נייד רוב היום כמחשב שולחני, והוא תמיד מחובר לחשמל, סוללת הליתיום נשחקת מהר יותר.
-            <br><strong>הפתרון:</strong> נתקו את המטען כאשר הסוללה מגיעה ל-80% וחברו אותו שוב כאשר היא יורדת ל-20-30%. שימוש במצבי טעינה חכמים במידה והמחשב תומך בהם.</p>
-            
-            <p><strong>3. העברת המחשב כשהוא פועל:</strong> נענוע או טלטול של מחשב בזמן שהוא עדיין מפעיל תוכנות או כותב לדיסק (במיוחד אם יש לו כונן מכני - HDD) עלול לגרום ל-Data Corruption ואף לנזק פיזי לכונן.
-            <br><strong>הפתרון:</strong> כבו את המחשב או העבירו אותו למצב 'שינה' (Sleep) לפני שאתם מעבירים אותו למקום אחר או מכניסים אותו לתיק.</p>
-
-            <p><strong>4. אכילה ושתייה ליד המחשב:</strong> כוס קפה שנשפכת על המקלדת או פירורים שנכנסים מתחת למקשים הם המתכון הבטוח לביקור במעבדה.
-            <br><strong>הפתרון:</strong> שמרו על מרחק בטיחות בין המזון והשתייה למחשב. במידת הצורך, השתמשו במגן מקלדת סיליקון.</p>
-
-            <p><strong>5. כיבוי בכוח:</strong> כיבוי המחשב על ידי לחיצה ממושכת על כפתור ההדלקה (מלבד מקרי חירום) עלול לפגוע במערכת הקבצים ולגרום לתקלות תוכנה.
-            <br><strong>הפתרון:</strong> השתמשו תמיד באפשרות 'כיבוי' (Shut Down) דרך תפריט 'התחל' על מנת לאפשר למערכת לסגור קבצים ותוכנות בצורה מסודרת.</p>
-        `
-    },
-    'viruses': {
-        title: 'וירוסים ונוזקות: 3 דרכים להישאר מוגנים ברשת 🛡️',
-        body: `
-            <p><strong>1. אנטי-וירוס מעודכן (Antivirus):</strong> תוכנת אנטי-וירוס איכותית היא קו ההגנה הראשון שלכם. ודאו שהיא מופעלת, מעודכנת באופן אוטומטי, ומבצעת סריקות תקופתיות. גם Windows Defender המובנה במערכות Windows חדשות מספק הגנה טובה, אך יש לוודא שהוא פעיל.</p>
-            
-            <p><strong>2. היזהרו מלינקים וקבצים חשודים:</strong> נוזקות רבות מופצות דרך מיילים (Phishing) או אתרים מתחזים. אם קיבלתם מייל מחברות שאינן מוכרות, או קישור שמבטיח כסף קל - הימנעו מללחוץ או לפתוח קבצים מצורפים. אם אינכם בטוחים, גשו לאתר החברה באופן ישיר במקום ללחוץ על הקישור במייל.</p>
-            
-            <p><strong>3. גיבוי קבוע (Backup):</strong> הגיבוי הוא לא הגנה מפני וירוסים, אבל הוא ההצלה שלכם במקרה של מתקפת כופרה (Ransomware), שנועלת את הקבצים שלכם. אם יש לכם גיבוי חיצוני עדכני, תוכלו לפרמט את המחשב ולשחזר את כל המידע שלכם ללא תשלום כופר. הקפידו לגבות את המידע החשוב שלכם על בסיס שבועי או חודשי.</p>
-        `
-    },
-    'speed': {
-        title: 'המחשב איטי? 4 פעולות פשוטות להאצת המחשב הביתי 🚀',
-        body: `
-            <p><strong>1. נקו את סייר הקבצים:</strong> קבצים זמניים, קבצי אינטרנט ישנים וקבצים בסל המיחזור תופסים מקום ומאיטים את המערכת. השתמשו בכלי ניקוי הדיסק המובנה של Windows או תוכנות צד שלישי (בזהירות) כדי לנקות שאריות מיותרות.</p>
-            
-            <p><strong>2. בטלו הפעלת תוכנות אוטומטית:</strong> תוכנות רבות (כגון סקייפ, ספוטיפיי, וואטסאפ למחשב) מוגדרות להיפתח אוטומטית עם הפעלת המחשב, מה שמאט משמעותית את זמן עליית המערכת ומעמיס על זיכרון ה-RAM.
-            <br><strong>איך עושים זאת?</strong> היכנסו ל'מנהל המשימות' (Task Manager) -> לשונית 'הפעלה' (Startup) ובטלו תוכנות שאינן נחוצות מיידית.</p>
-            
-            <p><strong>3. עדכנו מנהלי התקנים (Drivers):</strong> דרייברים ישנים או פגומים עלולים לגרום לקריסות ולהאטות בלתי מוסברות. ודאו שמנהלי ההתקנים של כרטיס המסך, השבבים והרכיבים המרכזיים מעודכנים על ידי בדיקה באתרי היצרנים (Dell, HP, Lenovo).</p>
-
-            <p><strong>4. ודאו שטח פנוי בכונן ה-SSD:</strong> כונני SSD (הכוננים המהירים יותר הנפוצים כיום) צריכים שטח פנוי מסוים כדי לתפקד ביעילות. אם הכונן שלכם מלא ב-90% ומעלה, המחשב יתחיל לפעול לאט יותר. מחקו קבצים גדולים או העבירו אותם לכונן חיצוני.</p>
-        `
-    },
-    'battery': {
-        title: 'כך תשמרו על חיי הסוללה של המחשב הנייד לאורך זמן 🔋',
-        body: `
-            <p><strong>האמת על חיבור קבוע לחשמל:</strong> בעבר, השארת המחשב מחובר תמיד גרמה לבלאי מהיר של הסוללה. כיום, מרבית המחשבים הניידים המודרניים (משנת 2015 ואילך) כוללים מעגלי הגנה חכמים המפסיקים את הטעינה כאשר הסוללה מגיעה ל-100%, ומפעילים אותה מחדש רק כשהיא יורדת מתחת לסף מסוים (לרוב 95%).
-            <br><strong>אבל...:</strong> הטמפרטורה היא האויב הגדול ביותר של סוללות ליתיום. עבודה ממושכת כשהמחשב מחובר ומתחמם עלולה עדיין לקצר את חייה. אם אפשר, השאירו אותו בטמפרטורת החדר.</p>
-
-            <p><strong>המלצה כללית:</strong>
-            <ul>
-                <li>אם המחשב משמש בעיקר כמחשב נייח, נסו להשתמש בתוכנות ניהול הסוללה של היצרן (כגון 'Lenovo Vantage' או 'MyHP') המאפשרות הגבלת טעינה ל-60% או 80%, מה שמאריך משמעותית את חיי הסוללה.</li>
-                <li>בצעו 'מחזור פריקה-טעינה' פעם בחודש: פרקו את הסוללה עד כ-10-15% וטענו אותה מחדש ל-100% כדי לכייל את המחשב מחדש.</li>
-                <li>הנמיכו את בהירות המסך: מסך בהיר הוא זולל הסוללה הגדול ביותר. הפחתו את הבהירות למינימום הנוח לעבודה.</li>
-            </ul>
-            </p>
-        `
-    },
-    // *** מאמרים חדשים שנוספו ***
-    'backup': {
-        title: 'גיבוי בענן לעומת גיבוי חיצוני: מה ההבדל ומה עדיף לבית העסק? ☁️',
-        body: `
-            <p><strong>גיבוי חיצוני (כונן נייד):</strong>
-            <ul>
-                <li><strong>יתרונות:</strong> מהירות גיבוי ושחזור גבוהה, שליטה מלאה על המידע, עלות חד-פעמית.</li>
-                <li><strong>חסרונות:</strong> רגישות לנזק פיזי (שריפה, הצפה), דורש ניתוק ואחסון פיזי מחוץ למחשב כדי למנוע הידבקות בנוזקות (Ransomware), סכנת אובדן או גניבה.</li>
-            </ul></p>
-            
-            <p><strong>גיבוי ענן (OneDrive, Google Drive, Backblaze):</strong>
-            <ul>
-                <li><strong>יתרונות:</strong> הגנה מוחלטת מפני נזק פיזי וגניבה, גישה למידע מכל מקום בעולם, גיבוי אוטומטי ותמיכה בשחזור גרסאות קודמות (מניעת נזקי כופרה).</li>
-                <li><strong>חסרונות:</strong> דורש חיבור יציב לאינטרנט, עלות חודשית/שנתית (בד"כ לפי נפח), מהירות גיבוי ראשונית איטית.</li>
-            </ul></p>
-
-            <p><strong>המלצה:</strong> לעסקים או למשתמשים עם מידע קריטי, מומלץ ליישם את <strong>'כלל 3-2-1'</strong>: 3 עותקים של המידע, ב-2 סוגי מדיה שונים (כונן פנימי וענן), ו-1 מהם מאוחסן במיקום מחוץ לאתר (למשל, בענן).</p>
-        `
-    },
-    'buying': {
-        title: 'כיצד לבחור את המחשב הנייד הנכון: 3 שאלות שחייבים לשאול לפני הקנייה 💡',
-        body: `
-            <p><strong>1. מהי רמת השימוש והצרכים? (מעבד - CPU)</strong>
-            <ul>
-                <li><strong>שימוש בסיסי (גלישה, מיילים, לימודים):</strong> מעבדי Intel Core i3 או AMD Ryzen 3/5, מספיקים בהחלט.</li>
-                <li><strong>שימוש רב-תכליתי (זום, עבודה משרדית, מולטיטאסקינג):</strong> מעבדי Intel Core i5 או AMD Ryzen 5 מומלצים לאיזון בין מחיר לביצועים.</li>
-                <li><strong>שימוש מקצועי (גרפיקה, עריכת וידאו):</strong> יש לבחור מעבדי Intel Core i7 או AMD Ryzen 7 ומעלה, ובדגש על כרטיס גרפי נפרד.</li>
-            </ul></p>
-            
-            <p><strong>2. כמה זיכרון (RAM) נחוץ?</strong>
-            <ul>
-                <li><strong>8GB:</strong> המינימום ההכרחי כיום. מתאים לגלישה ושימוש בסיסי.</li>
-                <li><strong>16GB:</strong> ההמלצה הגורפת שלנו. זהו ה'מקום הנוסף' שיבטיח שהמחשב לא יאט כאשר פתוחים עשרות חלונות דפדפן ותוכנות שונות במקביל.</li>
-                <li><strong>32GB ומעלה:</strong> רק למקצוענים (מתכנתים, גרפיקאים כבדים).</li>
-            </ul></p>
-            
-            <p><strong>3. מהו גודל המסך המועדף? (ניידות מול נוחות)</strong>
-            <ul>
-                <li><strong>13.3-14 אינץ':</strong> ניידות מקסימלית ומשקל קל. אידיאלי לנסיעות ולמי שנושא את המחשב בתיק כל יום.</li>
-                <li><strong>15.6 אינץ':</strong> הגודל הסטנדרטי והנפוץ ביותר. האיזון המושלם בין נוחות עבודה לניידות סבירה.</li>
-                <li><strong>17 אינץ':</strong> נוחות מקסימלית (מסך גדול ומקלדת מלאה), אך ניידות נמוכה יחסית. מתאים כחלופה למחשב שולחני.</li>
-            </ul></p>
-        `
-    }
-    // *** סוף מאמרים חדשים שנוספו ***
-};
-
-// =========================================================================
-
-/**
- * פונקציה לבנייה ורינדור של כרטיסי המוצרים והכותרות מתוך המערך allProducts.
- */
-function renderProducts() {
-    // בודק אם המערך allProducts הוגדר על ידי products.js
-    if (typeof allProducts === 'undefined') {
-        console.error("Error: allProducts array is not defined. Ensure products.js is loaded correctly.");
-        return;
-    }
-
-    const productsGrid = document.querySelector('.products-grid');
-    let productsHtml = '';
-    let lastCompany = '';
-
-    allProducts.forEach((product, index) => {
-        // הוספת כותרת חברה אם היא שונה מהקודמת
-        if (product.category && product.category !== lastCompany) {
-            productsHtml += `
-                <div class="product-title group-${product.company}" data-company="${product.company}" data-aos="fade-up">
-                    ${product.category}
-                </div>
-            `;
-            lastCompany = product.category;
-        }
-
-        // בניית כרטיס המוצר
-        productsHtml += `
-            <div class="product-card" data-company="${product.company}" data-price="${product.price}" data-aos="fade-up" data-aos-delay="${(index % 3) * 100}" data-aos-anchor-placement="top-bottom">
-                <img src="${product.imgSrc}" alt="${product.imgAlt}">
-                <h3>${product.name}</h3>
-                <p>${product.description}</p>
-                <div class="price">₪${product.price.toLocaleString('he-IL')}</div>
-                <hr class="price-separator">
-                <a onclick="openModal('${product.name}', ${product.price})" style="cursor: pointer;">להזמנה כעת</a>
-            </div>
-        `;
-    });
-
-    // הכנסת כל ה-HTML שנוצר לפני הודעת "לא נמצאו מוצרים"
-    const noProductsMessage = document.getElementById('no-products-message');
-    productsGrid.insertAdjacentHTML('afterbegin', productsHtml);
-}
-
-
-/**
- * פונקציה להצגת סקשנים וניהול כפתורי הניווט.
- * @param {string} id - מזהה ה-section להצגה (למשל: 'home', 'products').
- * @param {HTMLElement} element - אלמנט הקישור שנלחץ (עבור סימון כפעיל).
- */
-function showSection(id, element) {
-    // הסתרת כל הסקשנים והסרת סימון פעיל מכל הקישורים
-    document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
-    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active-link'));
-    
-    // הצגת הסקשן הרצוי
-    const targetSection = document.getElementById(id);
-    if (targetSection) {
-        targetSection.classList.add('active');
-    }
-    
-    // סימון הקישור כפעיל
-    if (element) {
+        // הצגת הסקשן הרצוי והוספת Active ללינק
+        document.getElementById(sectionId).classList.add('active');
         element.classList.add('active-link');
-    }
-}
+        
+        // גלילה חלקה לראש הדף
+        window.scrollTo({ top: 0, behavior: 'smooth' });
 
-// פונקציה: פתיחת חלון קופץ עבור הזמנת מוצר
-function openModal(productName, productPrice) {
-    const modal = document.getElementById('orderModal');
-    const iframe = document.getElementById('orderFormIframe');
-    const nameSpan = document.getElementById('productNameInModal');
-
-    const fullProductNameWithPrice = `${productName} | מחיר: ₪${productPrice}`;
-
-    // בונה את כתובת ה-URL עם המחרוזת המאוחדת
-    const prefilledUrl = `${GENERAL_FORM_EMBED_URL}&${PRODUCT_NAME_ENTRY_ID}=${encodeURIComponent(fullProductNameWithPrice)}&usp=pp_url`;
-
-    nameSpan.textContent = fullProductNameWithPrice;
-
-    // טעינת טופס גוגל בתוך ה-iframe
-    iframe.src = prefilledUrl;
-
-    modal.style.display = 'block';
-
-    // סגירה בלחיצה מחוץ לחלון
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            closeModal('orderModal');
+        // אם עוברים לסקשן המוצרים, הפעל סינון מחדש
+        if (sectionId === 'products') {
+            filterProducts();
         }
     }
-}
 
-// פונקציה חדשה: פתיחת חלון קופץ עבור מאמרים
-function openArticle(articleId) {
-    const modal = document.getElementById('articleModal');
-    const contentDiv = document.getElementById('articleContent');
-    const article = articlesContent[articleId];
-
-    if (!article) return;
-
-    contentDiv.innerHTML = `<h3>${article.title}</h3>${article.body}`;
-    modal.style.display = 'block';
-
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            closeModal('articleModal');
-        }
-    }
-}
-
-// פונקציה: פתיחת חלון קופץ עבור יצירת קשר (טלפון, שעות, מיקום, טופס)
-function openContactModal(type) {
-    const modal = document.getElementById('contactModal');
-    const modalContent = document.getElementById('contactModalContent');
-    const modalBody = document.getElementById('contactModalBody');
-    let title, content, isSmall = true;
-
-    // איפוס תוכן וגדלים
-    modalBody.innerHTML = '';
-    modalContent.classList.remove('small');
-    modalContent.style.maxWidth = ''; // איפוס רוחב מקסימלי
-
-    switch (type) {
-        case 'message':
-            title = 'שלח הודעה 📝';
-            content = `<iframe src="${CONTACT_FORM_EMBED_URL}" frameborder="0" style="width: 100%; height: 1000px; border-radius: 8px;"></iframe>`;
-            isSmall = false; // טופס הוא גדול
-            modalContent.style.maxWidth = '600px'; // הגבלת רוחב הטופס לגודל סביר
-            break;
-        case 'phone':
-            title = 'מספר טלפון 📞';
-            // הפיכת מספר הטלפון לקישור tel:
-            content = `<p><a href="tel:0527685490" dir="ltr">052-7685490</a></p><p>מומלץ לשלוח הודעה מראש.</p>`;
-            break;
-        case 'hours':
-            title = 'שעות פעילות החנות ⏰';
-            content = `<p>א'-ה': <strong>15:00 - 18:00</strong></p><p>א'-ה': <strong>21:00 - 23:00</strong> </p>`;
-            break;
-        case 'location':
-            title = 'מיקום החנות 📍';
-            content = `<p><strong>ויקטור ויוליוס 606, נווה יעקב, ירושלים.</strong></p><p>ליד המרכז המסחרי, צמוד לאלקטרוניקס.</p>`;
-            break;
-    }
-
-    // הוספת תוכן
-    modalBody.innerHTML = `<h3>${title}</h3>${content}`;
-
-    // עדכון גודל ופתיחה
-    if (isSmall) {
-        modalContent.classList.add('small');
-    }
-    modal.style.display = 'block';
-
-    // סגירה בלחיצה מחוץ לחלון
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            closeModal('contactModal');
-        }
-    }
-}
-
-// פונקציה: סגירת החלון הקופץ
-function closeModal(modalId) {
-    const modal = document.getElementById(modalId);
-    modal.style.display = 'none';
-
-    // איפוס ה-iframe של הזמנת מוצר
-    if (modalId === 'orderModal') {
-        document.getElementById('orderFormIframe').src = "";
-    }
-
-    // איפוס פונקציית ה-window.onclick
-    window.onclick = null;
-}
-
-
-// פונקציה לסינון המוצרים - עודכנה לטפל בכותרות המוצר
-function filterProducts() {
-    const companyFilter = document.getElementById('company-filter').value;
-    const minPriceInput = document.getElementById('min-price').value;
-    const maxPriceInput = document.getElementById('max-price').value;
-    
-    const productsGrid = document.querySelector('.products-grid');
-    const productCards = document.querySelectorAll('.product-card');
-    const productTitles = document.querySelectorAll('.product-title'); // כותרות החברה
-    const noProductsMessage = document.getElementById('no-products-message');
-    let foundProducts = 0;
-
-    // המרה למספרים
-    const minPrice = minPriceInput === '' || isNaN(parseInt(minPriceInput)) ? 0 : parseInt(minPriceInput);
-    const maxPrice = maxPriceInput === '' || isNaN(parseInt(maxPriceInput)) ? Infinity : parseInt(maxPriceInput);
-
-    // קביעה האם מתבצע סינון כלשהו
-    const isFiltering = (companyFilter !== 'all' || minPriceInput !== '' || maxPriceInput !== '');
-
-    productsGrid.classList.toggle('is-filtering', isFiltering); // הוספת/הסרת מחלקה ל-Grid (מסתיר כותרות דרך CSS)
-
-    productCards.forEach(card => {
-        const company = card.getAttribute('data-company');
-        const price = parseInt(card.getAttribute('data-price'));
-
-        let companyMatch = (companyFilter === 'all' || company === companyFilter);
-        let priceMatch = (price >= minPrice && price <= maxPrice);
-
-        if (companyMatch && priceMatch) {
-            card.style.display = 'flex';
-            foundProducts++;
-        } else {
-            card.style.display = 'none';
-        }
-    });
-
-    // ניהול כותרות החברה באופן ידני כדי לכסות את המקרה של סינון חברה בלבד:
-    if (companyFilter !== 'all' && minPriceInput === '' && maxPriceInput === '') {
-        // סינון חברה בלבד - מציג רק את הכותרת הרלוונטית
-        productTitles.forEach(title => {
-            if (title.getAttribute('data-company') === companyFilter) {
-                title.style.display = 'block';
-            } else {
-                title.style.display = 'none';
+    /**
+     * פונקציה לפתיחת חלון קופץ של מאמרים
+     */
+    function openArticle(articleKey) {
+        const articleData = {
+            'damage': {
+                title: '5 הרגלים שיפגעו במחשב הנייד שלכם - ואיך למנוע אותם 💧',
+                content: `
+                    <p>מחשבים ניידים הם כלים עדינים הדורשים תחזוקה נכונה כדי לשמור על תקינותם לאורך זמן. הנה 5 טעויות נפוצות שכדאי להימנע מהן:</p>
+                    <p>1. **הצבת המחשב על משטחים רכים:** שימוש במחשב על שמיכה, כרית או משטח רך אחר חוסם את פתחי האוורור ומוביל להתחממות יתר. חום הוא האויב מספר 1 של רכיבי המחשב. השתמשו תמיד במשטח קשיח או במעמד קירור.</p>
+                    <p>2. **אכילה ושתייה ליד המחשב:** נוזלים הם הסיבה הנפוצה ביותר לנזקי מקלדת ורכיבים פנימיים. הימנעו משתייה ישירה מעל המחשב. פירורי מזון מצטברים ומקשים על הקלדה וניקוי.</p>
+                    <p>3. **נשיאת המחשב כשהוא פתוח:** נשיאת המחשב תוך אחיזה במסך עלולה לגרום לעומס רב על הצירים ולפגיעה במסך עצמו. הקפידו לסגור את המחשב ולהחזיק אותו בבסיס כשהוא נישא ממקום למקום.</p>
+                    <p>4. **משיכת כבל הטעינה בכוח:** ניתוק המטען במשיכה חזקה עלול לגרום נזק למחבר המטען במחשב, תיקון יקר הדורש פירוק המחשב. שלפו תמיד את המחבר בעדינות וביציבות.</p>
+                    <p>5. **התעלמות מרעש מאווררים גבוה:** מאווררים שעובדים חזק מדי ובאופן קבוע הם סימן שהמחשב מתחמם. ייתכן שהגיע הזמן לניקוי אבק פנימי מקצועי או החלפת משחה תרמית.</p>
+                `
+            },
+            'viruses': {
+                title: 'וירוסים ונוזקות: 3 דרכים להישאר מוגנים ברשת 🛡️',
+                content: `
+                    <p>אבטחת המחשב היא קריטית לשמירה על המידע האישי והפיננסי שלכם. יישום של שלושת הכללים הבאים יצמצם משמעותית את הסיכון להיפגע מנוזקות (Malware):</p>
+                    <p>1. **התקינו תוכנת אנטי-וירוס מעודכנת:** אנטי-וירוס איכותי מזהה וחוסם איומים בזמן אמת. חשוב לוודא שהוא מתעדכן באופן אוטומטי כדי להגן מפני האיומים החדשים ביותר.</p>
+                    <p>2. **היזהרו מהודעות דואר אלקטרוני חשודות (פישינג):** לעולם אל תלחצו על קישורים או תפתחו קבצים מצורפים בהודעות ממקור לא מוכר, או כאלו שנראות רשמיות אך מבקשות מידע אישי או סיסמאות. בנקים או גופים גדולים לא יבקשו מכם סיסמה במייל.</p>
+                    <p>3. **בצעו גיבויים קבועים:** גם אם המחשב נדבק בווירוס כופר (Ransomware) שנועל את הקבצים שלכם, גיבוי עדכני בענן או בכונן חיצוני יאפשר לכם לשחזר את כל המידע ללא תשלום כופר.</p>
+                `
+            },
+            'speed': {
+                title: 'המחשב איטי? 4 פעולות פשוטות להאצת המחשב הביתי 🚀',
+                content: `
+                    <p>מחשב איטי הוא מתסכל. לפני שאתם ממהרים להחליף חומרה, נסו את הפעולות הבאות כדי לשפר את הביצועים:</p>
+                    <p>1. **נקו קבצים זמניים ושאריות:** השתמשו בכלי ניקוי מובנה של מערכת ההפעלה (כגון Disk Cleanup ב-Windows) כדי למחוק קבצים זמניים, קבצי אינטרנט שמורים ונתונים מיותרים המאטים את המערכת.</p>
+                    <p>2. **נהלו תוכנות הפועלות ברקע:** בטלו הפעלה אוטומטית של תוכנות שאינן נחוצות מיד עם עליית המחשב. ככל שפועלות פחות תוכנות ברקע, כך המערכת מגיבה מהר יותר. (ב-Windows: מנהל המשימות -> לשונית אתחול).</p>
+                    <p>3. **בדקו שטח פנוי בכונן:** אם כונן האחסון (SSD או HDD) מלא כמעט לחלוטין, הביצועים יורדים. השאירו תמיד לפחות 10% שטח פנוי לטובת פעולת המערכת.</p>
+                    <p>4. **עדכנו דרייברים ומערכת הפעלה:** עדכונים כוללים לעיתים קרובות שיפורי ביצועים ותיקוני באגים קריטיים שמשפיעים על מהירות המחשב.</p>
+                `
+            },
+            'battery': {
+                title: 'כך תשמרו על חיי הסוללה של המחשב הנייד לאורך זמן 🔋',
+                content: `
+                    <p>סוללת המחשב הנייד היא רכיב מתכלה, אך ניתן להאריך את חייה באופן משמעותי עם הרגלי טעינה נכונים:</p>
+                    <p>1. **הימנעו מריקון או טעינה מלאה תמידית:** טווח הסוללה האידיאלי הוא בין 20% ל-80%. השארת המחשב ב-100% טעינה לאורך זמן, או ריקון שלו לאפס, גורמים לבלאי מואץ.</p>
+                    <p>2. **שימרו על טמפרטורה נמוכה:** חום הוא האויב הגדול ביותר של הסוללה. הימנעו משימוש במחשב בטמפרטורות גבוהות, או על משטחים החוסמים את האוורור.</p>
+                    <p>3. **אחסנו כראוי:** אם אינכם משתמשים במחשב למשך תקופה ארוכה, טענו את הסוללה לכ-50% ואחסנו אותו במקום קריר ויבש. אין לאחסן סוללה ריקה לחלוטין.</p>
+                    <p>4. **כייל (Calibrate) את הסוללה מעת לעת:** פעולת הכיול מאפסת את מד הטעינה של הסוללה, ומבטיחה שהמחשב מציג נתונים מדויקים יותר לגבי אורך חיי הסוללה שנותר.</p>
+                `
+            },
+            'backup': {
+                title: 'גיבוי בענן לעומת גיבוי חיצוני: מה ההבדל ומה עדיף לבית העסק? ☁️',
+                content: `
+                    <p>גיבוי המידע הוא חובה, אך הבחירה בין ענן (Cloud) לכונן חיצוני תלויה בצרכים שלכם:</p>
+                    <p>1. **גיבוי חיצוני (כונן קשיח):** יתרונות: מהירות גיבוי/שחזור גבוהה יותר, שליטה מלאה על המידע, עלות חד-פעמית. חסרונות: דורש תחזוקה ידנית, חשוף לגניבה או נזק פיזי (כגון שריפה או הצפה).</p>
+                    <p>2. **גיבוי בענן (Google Drive, Dropbox, וכו'):** יתרונות: גיבוי אוטומטי ויומיומי, זמינות מכל מקום, הגנה מפני נזק פיזי ואסונות. חסרונות: תלוי במהירות האינטרנט, עלות חודשית קבועה, והעברת מידע רגיש לצד שלישי.</p>
+                    <p>**המלצה לבית עסק:** הכלל הטוב ביותר הוא "3-2-1": שמרו 3 עותקים מהמידע, ב-2 סוגי מדיה שונים, ועותק 1 מחוץ לאתר (כלומר, בענן).</p>
+                `
+            },
+            'buying': {
+                title: 'כיצד לבחור את המחשב הנייד הנכון עבור הצרכים שלכם? 💻',
+                content: `
+                    <p>בחירת מחשב נייד חדש עלולה להיות מבלבלת. התמקדו בצרכים שלכם וב-4 הרכיבים הקריטיים הבאים:</p>
+                    <p>1. **מעבד (CPU):** המוח של המחשב. למשתמש יום-יומי (אינטרנט, מיילים, אופיס), מעבד Core i3 או Ryzen 3 מספיק. לעבודה משרדית כבדה ומולטימדיה, Core i5/Ryzen 5. לגיימינג ועריכת וידאו, Core i7/Ryzen 7 ומעלה.</p>
+                    <p>2. **זיכרון (RAM):** משפיע על יכולת המחשב להריץ יישומים מרובים בו-זמנית. המינימום המומלץ כיום הוא 8GB. 16GB הוא הסטנדרט הנוכחי המומלץ לרוב המשתמשים.</p>
+                    <p>3. **אחסון (SSD):** ודאו שהמחשב כולל כונן SSD (ולא HDD). כונן SSD (Solid State Drive) מהיר פי עשרות מונים מכונן קשיח רגיל ומאיץ באופן דרמטי את עליית המחשב וטעינת התוכנות. נפח מומלץ: 512GB ומעלה.</p>
+                    <p>4. **כרטיס מסך (GPU):** אם אתם גיימרים או עורכי וידאו, אתם זקוקים לכרטיס מסך ייעודי (Dedicated GPU). למשתמש רגיל, כרטיס המסך המובנה במעבד (Integrated GPU) מספיק בהחלט.</p>
+                `
             }
-        });
-    } else if (companyFilter === 'all' && minPriceInput === '' && maxPriceInput === '') {
-        // אין סינון כלל - מציג את כל הכותרות
-        productTitles.forEach(title => {
-            title.style.display = 'block';
-        });
-    } else {
-        // סינון מחיר פעיל (עם או בלי חברה) - הסתרת כל הכותרות (כפי שמוגדר ב-CSS ל-.is-filtering)
+        };
+
+        const modal = document.getElementById('article-modal');
+        const titleElement = document.getElementById('article-title');
+        const contentElement = document.getElementById('article-content');
+
+        if (articleData[articleKey]) {
+            titleElement.innerHTML = articleData[articleKey].title;
+            contentElement.innerHTML = articleData[articleKey].content;
+            modal.style.display = "block";
+        }
+    }
+
+    /**
+     * פונקציה לסגירת חלון קופץ של מאמרים
+     */
+    function closeArticleModal() {
+        document.getElementById('article-modal').style.display = "none";
+    }
+
+    /**
+     * פונקציה לפתיחת חלון קופץ ליצירת קשר ממוצר
+     */
+    function openContactModal(productName) {
+        const modal = document.getElementById('contact-modal');
+        document.getElementById('modal-product-name').textContent = productName;
+        
+        // יצירת קישור וואטסאפ עם שם המוצר
+        const whatsappText = `אני מעוניין בפרטים נוספים על המוצר: ${productName}`;
+        const whatsappLink = `https://wa.me/972527685490?text=${encodeURIComponent(whatsappText)}`;
+        document.getElementById('modal-whatsapp-link').href = whatsappLink;
+
+        modal.style.display = "block";
+    }
+
+    /**
+     * פונקציה לסגירת חלון קופץ ליצירת קשר
+     */
+    function closeContactModal() {
+        document.getElementById('contact-modal').style.display = "none";
+    }
+
+    /**
+     * פונקציה לסינון המוצרים ברשימה
+     */
+    function filterProducts() {
+        const companyFilter = document.getElementById('company-filter').value;
+        const categoryFilter = document.getElementById('category-filter').value;
+        const priceMin = parseFloat(document.getElementById('price-min').value) || 0;
+        const priceMax = parseFloat(document.getElementById('price-max').value) || Infinity;
+        const productsGrid = document.querySelector('.products-grid');
+        const noProductsMessage = document.getElementById('no-products-message');
+        const productTitles = document.querySelectorAll('.products-grid .product-title');
+        let foundProducts = 0;
+
+        // הסתרת כל כותרות החברות
         productTitles.forEach(title => {
             title.style.display = 'none';
         });
-    }
+
+        // הסרת הסימון על מצב סינון (מכיוון שאם בוחרים 'all' אז הוא לא במצב סינון פרטני)
+        if (companyFilter === 'all' && categoryFilter === 'all' && priceMin === 0 && priceMax === Infinity) {
+             productsGrid.classList.remove('is-filtering');
+        } else {
+             productsGrid.classList.add('is-filtering');
+        }
+        
+        // סינון כרטיסי המוצר
+        document.querySelectorAll('.product-card').forEach(card => {
+            const company = card.getAttribute('data-company');
+            const category = card.getAttribute('data-category');
+            const price = parseInt(card.getAttribute('data-price'));
+
+            const companyMatch = companyFilter === 'all' || company === companyFilter;
+            const categoryMatch = categoryFilter === 'all' || category === categoryFilter;
+            const priceMatch = price >= priceMin && price <= priceMax;
+
+            if (companyMatch && categoryMatch && priceMatch) {
+                card.style.display = 'flex';
+                foundProducts++;
+                // הצגת כותרת החברה אם יש מוצר רלוונטי
+                const specificTitle = document.querySelector(`.product-title[data-company="${company}"]`);
+                if (productsGrid.classList.contains('is-filtering') && specificTitle) {
+                     specificTitle.style.display = 'block';
+                }
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        // אם לא נמצאו מוצרים, הצג הודעה. אם נמצאו והסינון לא על 'all', הסתר את הכותרות הכלליות.
+         if (productsGrid.classList.contains('is-filtering') && companyFilter === 'all') {
+            productTitles.forEach(title => {
+                title.style.display = 'none';
+            });
+        }
+        
+        // החזרת הכותרות המלאות אם אין סינון כלל, והפעלת הטיפול בכותרת הספציפית אם יש סינון
+        if (!productsGrid.classList.contains('is-filtering')) {
+             productTitles.forEach(title => {
+                title.style.display = 'block';
+            });
+        } else if (companyFilter !== 'all') {
+             const specificTitle = document.querySelector(`.product-title[data-company="${companyFilter}"]`);
+             if (specificTitle) {
+                specificTitle.style.display = 'block';
+             }
+        }
 
 
-    if (foundProducts === 0) {
-        noProductsMessage.style.display = 'block';
-    } else {
-        noProductsMessage.style.display = 'none';
-    }
-}
-
-
-/**
- * פונקציה לטעינת דף, טיפול בפרמטר Query וייזום ספריית ההנפשות.
- */
-function initializePage() {
-    // ייזום AOS
-    AOS.init({
-      duration: 800, 
-      once: true 
-    });
-    
-    // קריאת פרמטר ה-Query
-    const urlParams = new URLSearchParams(window.location.search);
-    const targetSectionId = urlParams.get('section');
-    
-    let activeSectionId = 'home';
-    let activeLinkElement = document.querySelector('nav a[data-section="home"]');
-
-    if (targetSectionId) {
-        const potentialLink = document.querySelector(`nav a[data-section="${targetSectionId}"]`);
-        if (potentialLink) {
-            activeSectionId = targetSectionId;
-            activeLinkElement = potentialLink;
+        if (foundProducts === 0) {
+            noProductsMessage.style.display = 'block';
+        } else {
+            noProductsMessage.style.display = 'none';
         }
     }
 
-    // הצגת הסקשן הרלוונטי
-    showSection(activeSectionId, activeLinkElement);
-    
-    // *** שינוי: רינדור המוצרים מהקובץ החיצוני לפני הפעלת הסינון
-    if (typeof allProducts !== 'undefined') {
-        renderProducts();
+
+    /**
+     * פונקציה לפתיחה וסגירה של חלון הצ'אט בוט המעוצב.
+     */
+    function toggleChatWidget() {
+        const widget = document.getElementById('chat-widget');
+        widget.classList.toggle('open');
     }
 
-    // ייזום סינון המוצרים עם המסננים הדיפולטיביים
-    filterProducts();
-}
 
-// ייזום לאחר טעינת כל רכיבי ה-DOM
-document.addEventListener('DOMContentLoaded', initializePage);
+    /**
+     * פונקציה לטעינת דף, טיפול בפרמטר Query וייזום ספריית ההנפשות.
+     */
+    function initializePage() {
+        // ייזום AOS
+        AOS.init({
+          duration: 800, 
+          once: true 
+        });
+        
+        // קריאת פרמטר ה-Query
+        const urlParams = new URLSearchParams(window.location.search);
+        const targetSectionId = urlParams.get('section');
+        
+        let activeSectionId = 'home';
+        let activeLinkElement = document.querySelector('nav a[data-section="home"]');
+
+        if (targetSectionId) {
+            const potentialLink = document.querySelector(`nav a[data-section="${targetSectionId}"]`);
+            if (potentialLink) {
+                activeSectionId = targetSectionId;
+                activeLinkElement = potentialLink;
+            }
+        }
+
+        // הצגת הסקשן הרלוונטי
+        showSection(activeSectionId, activeLinkElement);
+        
+        // *** שינוי: רינדור המוצרים מהקובץ החיצוני לפני הפעלת הסינון
+        if (typeof allProducts !== 'undefined') {
+            // אם יש פונקציה כזו, קרא לה
+            if (typeof renderProducts === 'function') { 
+                renderProducts();
+            }
+        }
+
+        // ייזום סינון המוצרים עם המסננים הדיפולטיביים
+        filterProducts();
+    }
+
+    // ייזום לאחר טעינת כל רכיבי ה-DOM
+    document.addEventListener('DOMContentLoaded', initializePage);
 </script>
-
-
-
-
-
 
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-<script>
-  (function (w, d, s, o, f, js, fjs) {
-    w["botsonic_widget"] = o;
-    w[o] =
-      w[o] ||
-      function () {
-        (w[o].q = w[o].q || []).push(arguments);
-      };
-    (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
-    js.id = o;
-    js.src = f;
-    js.async = 1;
-    fjs.parentNode.insertBefore(js, fjs);
-  })(window, document, "script", "Botsonic", "https://widget.botsonic.com/CDN/botsonic.min.js");
-  Botsonic("init", {
-    serviceBaseUrl: "https://api-bot.writesonic.com",
-    token: "410d83eb-fbe8-4469-b859-1ed5a13481cf",
-  });
-</script>
 
 </body>
 </html>
