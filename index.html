@@ -565,6 +565,15 @@
                 gap: 10px;
             }
         }
+        
+        /* === תיקון לצ'אט בוט (Botsonic) - הוספה חדשה === */
+        /* מוודא שהווידג'ט צף מעל הכל ובמיקום נגיש */
+        .botsonic-widget-container {
+            z-index: 99999 !important;
+            bottom: 20px !important;
+            left: 20px !important; /* דואג למיקום אם הוא נעלם בצד שמאל (באתר עם כיוון RTL) */
+            right: auto !important; /* מוודא ש-RTL לא דוחף אותו החוצה */
+        }
     </style>
 </head>
 <body>
