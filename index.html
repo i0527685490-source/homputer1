@@ -256,31 +256,58 @@
             font-weight: 700;
             color: var(--primary-color);
         }
-
-        .price-inputs {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            width: 100%;
-        }
-        .price-inputs input {
-            width: calc(50% - 10px);
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
+        
+        /* סטייל ייעודי לשדה החיפוש */
+        .filter-group input[type="text"] {
+            width: 195px; 
+            padding: 10px 18px; 
+            border: 2px solid var(--primary-color); 
+            border-radius: 30px; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05); 
+            transition: all 0.3s;
             font-family: 'Heebo', sans-serif;
             font-size: 15px;
             text-align: right;
-            transition: border-color 0.3s;
         }
-        .price-inputs input:focus {
-             border-color: var(--secondary-color);
+        .filter-group input[type="text"]:focus {
+             border-color: #00aaff;
+             box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.2);
              outline: none;
         }
-        .price-inputs span {
-            color: var(--text-light);
-            font-size: 14px;
+        /* סוף סטייל ייעודי לשדה החיפוש */
+
+
+        /* סגנון למחווני הטווח */
+        .filter-group input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            background: #ddd;
+            border-radius: 5px;
+            outline: none;
+            margin: 5px 0;
+            cursor: pointer;
+            transition: opacity .2s;
         }
+        .filter-group input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .filter-group input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        /* סוף סגנון למחווני הטווח */
 
         .filter-group select {
             min-width: 100%;
@@ -658,6 +685,14 @@
                 align-items: center;
                 gap: 10px;
             }
+            .filter-group:nth-child(2), .filter-group:nth-child(3) { /* כפתור חברה וטווחי מחיר */
+                 width: 48%; /* חלוקת השורה לשניים */
+                 flex-direction: column;
+                 align-items: flex-start;
+            }
+            .filter-group:nth-child(1) { /* שדה החיפוש */
+                 width: 100%;
+            }
             
             /* רספונסיביות לצ'אט בוט */
             #chatbot-container {
@@ -787,6 +822,11 @@
     <div class="products-layout">
 
         <div class="filter-controls" data-aos="fade-down">
+            
+            <div class="filter-group">
+                <label for="search-input">חיפוש חופשי:</label>
+                <input type="text" id="search-input" placeholder="הכנס מילה לחיפוש" oninput="filterProducts()">
+            </div>
             <div class="filter-group">
                 <label for="company-filter">סנן לפי חברה:</label>
                 <select id="company-filter" onchange="filterProducts()">
@@ -800,12 +840,14 @@
             </div>
             
             <div class="filter-group price-range-group">
-                <label for="min-price">טווח מחיר (₪):</label>
-                <div class="price-inputs">
-                    <input type="number" id="min-price" placeholder="מינימום" oninput="filterProducts()" min="0">
-                    <span>עד</span>
-                    <input type="number" id="max-price" placeholder="מקסימום" oninput="filterProducts()" min="0">
-                </div>
+                <label>טווח מחיר (₪):</label>
+                <div id="price-slider-display" style="font-weight: 700; color: var(--text-dark); margin-bottom: 10px; text-align: center;"></div>
+                
+                <label for="min-price-slider" style="margin-top: 5px; font-size: 14px; font-weight: 500;">מחיר מינימום</label>
+                <input type="range" id="min-price-slider" min="0" max="15000" value="0" step="500" oninput="updatePriceFilter()">
+                
+                <label for="max-price-slider" style="margin-top: 5px; font-size: 14px; font-weight: 500;">מחיר מקסימום</label>
+                <input type="range" id="max-price-slider" min="0" max="15000" value="15000" step="500" oninput="updatePriceFilter()">
             </div>
         </div>
 
@@ -895,7 +937,7 @@ const PRODUCT_NAME_ENTRY_ID = 'entry.1050602991';
 const CONTACT_FORM_EMBED_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfOrZYlBDUdhoezDQ8yhHnYy2IF7uxoeP2vxuH3vO7sqwTBeA/viewform?embedded=true';
 
 // =========================================================================
-// *** תוכן המאמרים (עבור פונקציית openArticle) - חדש - נוספו 2 מאמרים ***
+// *** תוכן המאמרים (עבור פונקציית openArticle) ***
 // =========================================================================
 
 const articlesContent = {
@@ -956,7 +998,6 @@ const articlesContent = {
             </p>
         `
     },
-    // *** מאמרים חדשים שנוספו ***
     'backup': {
         title: 'גיבוי בענן לעומת גיבוי חיצוני: מה ההבדל ומה עדיף לבית העסק? ☁️',
         body: `
@@ -1000,7 +1041,6 @@ const articlesContent = {
             </ul></p>
         `
     }
-    // *** סוף מאמרים חדשים שנוספו ***
 };
 
 // =========================================================================
@@ -1034,23 +1074,30 @@ function toggleChatbot() {
 }
 
 
-/**
- * פונקציה לבנייה ורינדור של כרטיסי המוצרים והכותרות מתוך המערך allProducts.
- */
-function renderProducts() {
-    // בודק אם המערך allProducts הוגדר על ידי products.js
-    if (typeof allProducts === 'undefined') {
-        console.error("Error: allProducts array is not defined. Ensure products.js is loaded correctly.");
-        return;
-    }
+// =========================================================================
+// *** לוגיקת רינדור וסינון מוצרים - עודכנה לכלול מחווני טווח מחיר וחיפוש חופשי ***
+// =========================================================================
 
+/**
+ * פונקציה לבנייה ורינדור של רשימת מוצרים נתונה
+ * @param {Array} productsToDisplay - מערך המוצרים להצגה.
+ * @param {boolean} isFiltering - האם כרגע מתבצע סינון (משפיע על הצגת כותרות הקטגוריות).
+ */
+function displayProducts(productsToDisplay, isFiltering) {
     const productsGrid = document.querySelector('.products-grid');
+    const noProductsMessage = document.getElementById('no-products-message');
+    productsGrid.innerHTML = ''; // ניקוי ה-Grid
+
+    // הוספת המחלקה 'is-filtering' מסתירה את כותרות החברות דרך CSS
+    productsGrid.classList.toggle('is-filtering', isFiltering);
+
     let productsHtml = '';
     let lastCompany = '';
+    let foundProducts = 0;
 
-    allProducts.forEach((product, index) => {
-        // הוספת כותרת חברה אם היא שונה מהקודמת
-        if (product.category && product.category !== lastCompany) {
+    productsToDisplay.forEach((product, index) => {
+        // הצגת כותרת החברה רק אם לא מתבצע סינון כלל (טעינה ראשונית)
+        if (!isFiltering && product.category && product.category !== lastCompany) {
             productsHtml += `
                 <div class="product-title group-${product.company}" data-company="${product.company}" data-aos="fade-up">
                     ${product.category}
@@ -1070,13 +1117,155 @@ function renderProducts() {
                 <a onclick="openModal('${product.name}', ${product.price})" style="cursor: pointer;">להזמנה כעת</a>
             </div>
         `;
+        foundProducts++;
     });
-
-    // הכנסת כל ה-HTML שנוצר לפני הודעת "לא נמצאו מוצרים"
-    const noProductsMessage = document.getElementById('no-products-message');
+    
     productsGrid.insertAdjacentHTML('afterbegin', productsHtml);
+
+    if (foundProducts === 0) {
+        noProductsMessage.style.display = 'block';
+    } else {
+        noProductsMessage.style.display = 'none';
+    }
 }
 
+/**
+ * פונקציה שמאתחלת את מחווני הטווח ומבצעת רינדור ראשוני.
+ */
+function initialRenderAndSort() {
+    // בודק אם המערך allProducts הוגדר על ידי products.js
+    if (typeof allProducts === 'undefined') {
+        console.error("Error: allProducts array is not defined. Ensure products.js is loaded correctly.");
+        return;
+    }
+
+    // מציאת המחיר המקסימלי האמיתי במערך המוצרים
+    const maxPrice = allProducts.reduce((max, product) => Math.max(max, parseInt(product.price)), 0);
+    
+    const minSlider = document.getElementById('min-price-slider');
+    const maxSlider = document.getElementById('max-price-slider');
+
+    // הגדרת הערך המקסימלי של המחוונים בהתאם לנתונים
+    minSlider.max = maxPrice;
+    maxSlider.max = maxPrice;
+    maxSlider.value = maxPrice; // הגדרה למקסימום כערך ברירת מחדל
+
+    // עדכון תצוגת המחיר הראשונית
+    updatePriceDisplay(0, maxPrice);
+
+    // מיון ראשוני של המערך המלא:
+    // לפי חברה (כדי שהכותרות יהיו רציפות) ואז מחיר (מהנמוך לגבוה)
+    const sortedProducts = [...allProducts].sort((a, b) => {
+        // מיון ראשי: לפי שם החברה/קטגוריה
+        if (a.category < b.category) return -1;
+        if (a.category > b.category) return 1;
+        
+        // מיון משני: לפי מחיר (נמוך לגבוה)
+        return a.price - b.price; 
+    });
+
+    // קריאה לפונקציית ההצגה החדשה, isFiltering = false (כדי להציג כותרות)
+    displayProducts(sortedProducts, false); 
+}
+
+/**
+ * פונקציה לעדכון תצוגת טווח המחיר ב-HTML
+ */
+function updatePriceDisplay(minPrice, maxPrice) {
+     const priceDisplay = document.getElementById('price-slider-display');
+     const minVal = minPrice.toLocaleString('he-IL');
+     const maxVal = maxPrice.toLocaleString('he-IL');
+     
+     priceDisplay.textContent = `₪${minVal} עד ₪${maxVal}`;
+}
+
+
+/**
+ * פונקציה שנקראת על ידי מחווני הטווח - מטפלת בסדר וקוראת לסינון
+ */
+function updatePriceFilter() {
+    const minSlider = document.getElementById('min-price-slider');
+    const maxSlider = document.getElementById('max-price-slider');
+    
+    let minPrice = parseInt(minSlider.value);
+    let maxPrice = parseInt(maxSlider.value);
+
+    // ודא שהמינימום לא עולה על המקסימום
+    if (minPrice > maxPrice) {
+        // אם המינימום עקף את המקסימום, יש להחליף את הערכים.
+        // נעדכן רק את המינימום כך שיהיה שווה למקסימום הנוכחי, ונסדר הפוך עבור המקסימום.
+        if (event.target.id === 'min-price-slider') {
+            minPrice = maxPrice;
+            minSlider.value = maxPrice;
+        } else {
+             maxPrice = minPrice;
+             maxSlider.value = minPrice;
+        }
+    }
+    
+    // עדכון תצוגת המחיר
+    updatePriceDisplay(minPrice, maxPrice);
+    
+    // הפעלת הסינון
+    filterProducts();
+}
+
+
+// פונקציה לסינון המוצרים - עודכנה לכלול חיפוש חופשי
+function filterProducts() {
+    // 1. קריאת כל ערכי הסינון
+    const searchInput = document.getElementById('search-input').value.toLowerCase().trim();
+    const companyFilter = document.getElementById('company-filter').value;
+    const minSlider = document.getElementById('min-price-slider');
+    const maxSlider = document.getElementById('max-price-slider');
+    
+    let minPrice = parseInt(minSlider.value);
+    let maxPrice = parseInt(maxSlider.value);
+
+    // ודא שהמינימום לא גדול מהמקסימום (למען הבטיחות)
+    if (minPrice > maxPrice) {
+        [minPrice, maxPrice] = [maxPrice, minPrice];
+    }
+    
+    if (typeof allProducts === 'undefined') return;
+
+    // 2. קביעה האם מתבצע סינון כלשהו
+    const isSearching = searchInput.length > 0;
+    const isPriceFiltered = (minPrice > 0 || maxPrice < parseInt(maxSlider.max));
+    const isFiltering = (companyFilter !== 'all' || isPriceFiltered || isSearching);
+
+    // 3. סינון המוצרים מהמערך המלא
+    const filteredProducts = allProducts.filter(product => {
+        const price = parseInt(product.price);
+        const company = product.company;
+
+        // סינון חברה
+        let companyMatch = (companyFilter === 'all' || company === companyFilter);
+        
+        // סינון מחיר
+        let priceMatch = (price >= minPrice && price <= maxPrice);
+        
+        // סינון חיפוש חופשי
+        let searchMatch = true;
+        if (isSearching) {
+            // בדיקה אם שאילתת החיפוש נמצאת בשם, בתיאור, או בחברה (Case-insensitive)
+            const searchText = `${product.name} ${product.description} ${product.category} ${product.company}`.toLowerCase();
+            searchMatch = searchText.includes(searchInput);
+        }
+
+        // שילוב כל המסננים
+        return companyMatch && priceMatch && searchMatch; 
+    });
+
+    // 4. מיון והצגה
+    filteredProducts.sort((a, b) => a.price - b.price);
+    displayProducts(filteredProducts, isFiltering);
+}
+
+
+// =========================================================================
+// *** פונקציות עזר (ללא שינוי מהותי) ***
+// =========================================================================
 
 /**
  * פונקציה להצגת סקשנים וניהול כפתורי הניווט.
@@ -1210,73 +1399,6 @@ function closeModal(modalId) {
 }
 
 
-// פונקציה לסינון המוצרים - עודכנה לטפל בכותרות המוצר
-function filterProducts() {
-    const companyFilter = document.getElementById('company-filter').value;
-    const minPriceInput = document.getElementById('min-price').value;
-    const maxPriceInput = document.getElementById('max-price').value;
-    
-    const productsGrid = document.querySelector('.products-grid');
-    const productCards = document.querySelectorAll('.product-card');
-    const productTitles = document.querySelectorAll('.product-title'); // כותרות החברה
-    const noProductsMessage = document.getElementById('no-products-message');
-    let foundProducts = 0;
-
-    // המרה למספרים
-    const minPrice = minPriceInput === '' || isNaN(parseInt(minPriceInput)) ? 0 : parseInt(minPriceInput);
-    const maxPrice = maxPriceInput === '' || isNaN(parseInt(maxPriceInput)) ? Infinity : parseInt(maxPriceInput);
-
-    // קביעה האם מתבצע סינון כלשהו
-    const isFiltering = (companyFilter !== 'all' || minPriceInput !== '' || maxPriceInput !== '');
-
-    productsGrid.classList.toggle('is-filtering', isFiltering); // הוספת/הסרת מחלקה ל-Grid (מסתיר כותרות דרך CSS)
-
-    productCards.forEach(card => {
-        const company = card.getAttribute('data-company');
-        const price = parseInt(card.getAttribute('data-price'));
-
-        let companyMatch = (companyFilter === 'all' || company === companyFilter);
-        let priceMatch = (price >= minPrice && price <= maxPrice);
-
-        if (companyMatch && priceMatch) {
-            card.style.display = 'flex';
-            foundProducts++;
-        } else {
-            card.style.display = 'none';
-        }
-    });
-
-    // ניהול כותרות החברה באופן ידני כדי לכסות את המקרה של סינון חברה בלבד:
-    if (companyFilter !== 'all' && minPriceInput === '' && maxPriceInput === '') {
-        // סינון חברה בלבד - מציג רק את הכותרת הרלוונטית
-        productTitles.forEach(title => {
-            if (title.getAttribute('data-company') === companyFilter) {
-                title.style.display = 'block';
-            } else {
-                title.style.display = 'none';
-            }
-        });
-    } else if (companyFilter === 'all' && minPriceInput === '' && maxPriceInput === '') {
-        // אין סינון כלל - מציג את כל הכותרות
-        productTitles.forEach(title => {
-            title.style.display = 'block';
-        });
-    } else {
-        // סינון מחיר פעיל (עם או בלי חברה) - הסתרת כל הכותרות (כפי שמוגדר ב-CSS ל-.is-filtering)
-        productTitles.forEach(title => {
-            title.style.display = 'none';
-        });
-    }
-
-
-    if (foundProducts === 0) {
-        noProductsMessage.style.display = 'block';
-    } else {
-        noProductsMessage.style.display = 'none';
-    }
-}
-
-
 /**
  * פונקציה לטעינת דף, טיפול בפרמטר Query וייזום ספריית ההנפשות.
  */
@@ -1305,13 +1427,10 @@ function initializePage() {
     // הצגת הסקשן הרלוונטי
     showSection(activeSectionId, activeLinkElement);
     
-    // *** שינוי: רינדור המוצרים מהקובץ החיצוני לפני הפעלת הסינון
+    // קריאה לפונקציית הרינדור והמיון הראשונית
     if (typeof allProducts !== 'undefined') {
-        renderProducts();
+        initialRenderAndSort(); 
     }
-
-    // ייזום סינון המוצרים עם המסננים הדיפולטיביים
-    filterProducts();
 }
 
 // ייזום לאחר טעינת כל רכיבי ה-DOM
